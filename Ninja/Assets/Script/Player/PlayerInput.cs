@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
         {
             StartCoroutine(Skin2ToSkin1());
         }
-        else if ((Input.GetKeyUp(KeyCode.Mouse0) && playerManager.isSkin1))
+        else if (Input.GetKeyUp(KeyCode.Mouse0) && playerManager.isSkin1)
         {
 
             StartCoroutine(Skin1ToSkin2());

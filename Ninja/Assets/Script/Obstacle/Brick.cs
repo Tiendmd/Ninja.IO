@@ -17,13 +17,25 @@ public class Brick : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && check)
         {
-            rb.AddForce((transform.position - collision.transform.position) * 10, ForceMode.Impulse);
+            rb.AddForce((transform.position - collision.transform.position) * 20, ForceMode.Impulse);
             //Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), collision.transform.GetComponentInChildren<CapsuleCollider>());
             check = false;
         }
-        else if (collision.transform.tag == "Player" && check)
+        else if (collision.transform.tag == "Player" && !check)
         {
-            rb.AddForce((transform.position - collision.transform.position) * 5, ForceMode.Impulse);
+            rb.AddForce((transform.position - collision.transform.position) * 10, ForceMode.Impulse);
+        }
+
+        else if (collision.transform.CompareTag("Enemy") && check)
+        {
+            rb.AddForce((transform.position - collision.transform.position) * 20, ForceMode.Impulse);
+            //Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), collision.transform.GetComponentInChildren<CapsuleCollider>());
+            check = false;
+        }
+        else if (collision.transform.CompareTag("Enemy") && !check)
+        {
+            rb.AddForce((transform.position - collision.transform.position) * 10, ForceMode.Impulse);
+
         }
     }
 

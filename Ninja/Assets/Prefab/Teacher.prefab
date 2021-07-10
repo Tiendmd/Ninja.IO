@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2858463060435475544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0.65, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2858463060611978665}
@@ -142,8 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view1: 0
   view2: 1
-  viewRadius: 4.01
-  viewAngle: 67
+  viewRadius: 19.33
+  defaultViewRadius: 19
+  viewAngle: 22
+  defaultViewAngle: 22
   targetMask:
     serializedVersion: 2
     m_Bits: 192
@@ -250,7 +252,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLerp: 3
-  allowPatrol: 1
+  i: 0
+  allowPatrol: 0
   angles:
-  - 127
-  - 42
+  - 135
+  - 212
+  - 166
+  - 110
+  - 191
+  angles2: []
+  idleToPatrolTime: 5

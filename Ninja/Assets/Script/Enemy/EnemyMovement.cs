@@ -10,7 +10,6 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent agent;
     public Rigidbody rb { get; set; }
     public float rbSpeed;
-    public float delayTime = 3;
     public Animator animator { get; set; }
     private bool stopStartRace = false;
 
@@ -20,9 +19,12 @@ public class EnemyMovement : MonoBehaviour
     private bool oneTime = true;
 
     private bool demandCase4;
-    private bool demandCase23;
-    private bool demandCase1;
-    private bool demandCase0;
+
+    private bool allowToCheck = true;
+    public float jumpForce;
+    public GameObject child;
+    public LayerMask layer;
+    private bool checkJump;
     private void Start()
     {
         overrideSetDestination = false;
@@ -31,6 +33,9 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemyManager = GetComponent<EnemyManager>();
         animator = GetComponentInChildren<Animator>();
+        //agent.SetDestination(new Vector3(listOfDesination[0].x,
+        //               listOfDesination[0].y,
+        //               listOfDesination[0].z));
     }
 
     private void Update()
@@ -48,22 +53,22 @@ public class EnemyMovement : MonoBehaviour
             }
             else if (stopStartRace)
             {
-                if (enemyManager.isStupid)
+                if (enemyManager.isStupid && agent.enabled == true)
                 {
                     EnemyReachDestination();
                 }
-                else if (enemyManager.isSmart)
+                else if (enemyManager.isSmart && agent.enabled == true)
                 {
-                    //agent.enabled = true;
                     agent.SetDestination(new Vector3(listOfDesination[listOfDesination.Count - 1].x,
                         listOfDesination[listOfDesination.Count - 1].y,
                         listOfDesination[listOfDesination.Count - 1].z));
                 }
             }
         }
+        CheckGround();
     }
 
-    IEnumerator StartRace()
+    public IEnumerator StartRace()
     {
         oneTime = false;
         yield return new WaitForSeconds(1);
@@ -75,7 +80,7 @@ public class EnemyMovement : MonoBehaviour
         if (listOfDesination.Count > 0)
         {
             if (Vector3.Distance(transform.position, new Vector3(listOfDesination[0].x, listOfDesination[0].y, listOfDesination[0].z)) <= 0.5f
-    || transform.position.z >= listOfDesination[0].z)
+    || transform.position.z >= listOfDesination[0].z && agent.enabled == true)
             {
                 EnemyDoDemand();
                 if (listOfDesination.Count > 1)
@@ -87,13 +92,13 @@ public class EnemyMovement : MonoBehaviour
             {
                 return;
             }
-            else if (!overrideSetDestination)
+            else if (!overrideSetDestination && agent.enabled == true)
             {
                 agent.SetDestination(new Vector3(listOfDesination[0].x, listOfDesination[0].y, listOfDesination[0].z));
             }
-            else if (overrideSetDestination)
+            else if (overrideSetDestination && agent.enabled == true)
             {
-                agent.velocity = transform.forward * rbSpeed;
+                agent.velocity = new Vector3(0, 0, rbSpeed);
             }
 
         }
@@ -107,6 +112,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (listOfDesination[0].w == 2 || listOfDesination[0].w == 3)
         {
+            agent.ResetPath();
             overrideSetDestination = true;
             StartCoroutine(DemandCase23());
         }
@@ -124,13 +130,13 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    IEnumerator DemandCase23()
+    public IEnumerator DemandCase23()
     {
         yield return new WaitForSeconds(2f);
         overrideSetDestination = false;
     }
 
-    IEnumerator DemandCase4()
+    public IEnumerator DemandCase4()
     {
         StartCoroutine(enemyManager.EnemySkin1ToSkin2());
         StartCoroutine(enemyManager.StartParticleSystem());
@@ -141,17 +147,45 @@ public class EnemyMovement : MonoBehaviour
         demandCase4 = false;
     }
 
-    public IEnumerator Delay(float time)
+    //public IEnumerator Delay(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    agent.enabled = true;
+    //}
+
+    public void Jump()
     {
-        yield return new WaitForSeconds(time);
-        agent.enabled = true;
+        agent.enabled = false;
+        rb.AddForce(new Vector3(rb.velocity.x, 1 * jumpForce, 3.55f), ForceMode.Impulse);
+        animator.SetBool("jump", true);
+        StartCoroutine(DelayJump());
+    }
+
+    public void CheckGround()
+    {
+        if (Physics.Raycast(child.transform.position, Vector3.down, 0.05f, layer))
+        {
+            if (checkJump)
+            {
+                animator.SetBool("jump", false);
+                agent.enabled = true;
+                checkJump = false;
+            }
+        }
+    }
+
+    public IEnumerator DelayJump()
+    {
+        yield return new WaitForSeconds(1);
+        checkJump = true;
+
     }
 
     private void OnDrawGizmos()
     {
         for (int i = 0; i < listOfDesination.Count; i++)
         {
-            Gizmos.color = Color.white;
+            Gizmos.color = Color.black;
 
             Gizmos.DrawWireSphere(new Vector3(listOfDesination[i].x, listOfDesination[i].y, listOfDesination[i].z), 0.5f);
         }

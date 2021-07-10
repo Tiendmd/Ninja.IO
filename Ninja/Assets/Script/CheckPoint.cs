@@ -13,15 +13,18 @@ public class CheckPoint : MonoBehaviour
         {
             other.GetComponentInParent<PlayerManager>().checkPointPosition = new Vector3(0, 0.5f, transform.position.z);
 
-            //for (int i = 0; i < other.GetComponentsInChildren<CapsuleCollider>().Length; i++)
-            //{
-            //    Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), other.GetComponentsInChildren<CapsuleCollider>()[i]);
-            //}
+            for (int i = 0; i < other.GetComponentsInChildren<CapsuleCollider>().Length; i++)
+            {
+                Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), other.GetComponentsInChildren<CapsuleCollider>()[i]);
+            }
         }
         if (other.transform.tag == "Enemy")
         {
             other.GetComponentInParent<PlayerManager>().checkPointPosition = new Vector3(0, 0.5f, transform.position.z);
-
+            for (int i = 0; i < other.GetComponentsInChildren<CapsuleCollider>().Length; i++)
+            {
+                Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), other.GetComponentsInChildren<CapsuleCollider>()[i]);
+            }
         }
         if (teacher != null)
         {
