@@ -74,6 +74,7 @@ public class EnemyDodge : MonoBehaviour
                 StartCoroutine(enemyManager.EnemySkin2ToSkin1());
                 transform.GetComponent<EnemyMovement>().enabled = true;
                 transform.GetComponent<NavMeshAgent>().enabled = true;
+
             }
             oneTime = true;
         }
@@ -85,5 +86,6 @@ public class EnemyDodge : MonoBehaviour
         StartCoroutine(enemyManager.EnemySkin2ToSkin1());
         transform.GetComponent<EnemyMovement>().enabled = true;
         transform.GetComponent<NavMeshAgent>().enabled = true;
+        //transform.GetComponent<EnemyManager>().agent.velocity = new Vector3(0, 0, GetComponent<EnemyMovement>().rbSpeed);
     }
 }

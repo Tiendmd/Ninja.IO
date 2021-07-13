@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     private Vector3 skin2OriginSize;
     public float scaleTime;
     private bool oneTime = true;
+    public bool checkAnimationRun = true;
 
 
     [Header("Component")]
@@ -29,9 +30,10 @@ public class PlayerInput : MonoBehaviour
             DataManager.Instance.gameIsStart = true;
             oneTime = false;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && checkAnimationRun && playerManager.canMove )
         {
             animator.SetBool("run", true);
+            checkAnimationRun = false;
         }
         InputReceive();
 
@@ -42,9 +44,9 @@ public class PlayerInput : MonoBehaviour
         {
             StartCoroutine(Skin2ToSkin1());
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0) && playerManager.isSkin1)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && playerManager.isSkin1)
         {
-
+            checkAnimationRun = true;
             StartCoroutine(Skin1ToSkin2());
             StartCoroutine(StartParticleSystem());
         }

@@ -18,6 +18,7 @@ public class CheckPlayerY : MonoBehaviour
         {
             playerManager.PlayerFall();
             oneTime = false;
+            StartCoroutine(DelaySetBool());
         }
     }
 

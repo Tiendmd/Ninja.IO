@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - StairUp
   - StairDown
+  - StairDown2
   layers:
   - Default
   - TransparentFX

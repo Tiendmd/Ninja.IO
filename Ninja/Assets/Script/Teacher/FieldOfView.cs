@@ -221,10 +221,12 @@ public class FieldOfView : MonoBehaviour
             if (visibleTargets[i].transform.tag == "Player")
             {
 				visibleTargets[i].GetComponentInParent<PlayerManager>().ResetPositionToCheckPoint();
+				visibleTargets.RemoveAt(i);
 			}
             else if (visibleTargets[i].transform.tag == "Enemy")
             {
 				visibleTargets[i].GetComponentInParent<PlayerManager>().ResetEnemyToCheckPoint();
+				visibleTargets.RemoveAt(i);
 
 			}
 		}

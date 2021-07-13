@@ -20,13 +20,23 @@ public class EnemyMovement : MonoBehaviour
 
     private bool demandCase4;
 
-    private bool allowToCheck = true;
     public float jumpForce;
     public GameObject child;
     public LayerMask layer;
     private bool checkJump;
+    public bool pressing;
+
+    [Header("CheckForward")]
+    public LayerMask obstacleLayer;
+    public float Y1Rotation;
+    private float Y2Rotation;
+    private bool rayCastOn;
+    public float raycastLength;
+    //public float degreePerRaycast;
+    public int numerOfRay;
     private void Start()
     {
+        //NavMesh.RemoveAllNavMeshData();
         overrideSetDestination = false;
         playerManager = GetComponent<PlayerManager>();
         rb = GetComponent<Rigidbody>();
@@ -36,38 +46,50 @@ public class EnemyMovement : MonoBehaviour
         //agent.SetDestination(new Vector3(listOfDesination[0].x,
         //               listOfDesination[0].y,
         //               listOfDesination[0].z));
+        Y2Rotation = -Y1Rotation;
     }
 
     private void Update()
     {
-        if (DataManager.Instance.gameIsStart)
-        {
-            if (!stopStartRace)
-            {
-                animator.SetBool("run", true);
-                agent.velocity = new Vector3(0, 0, rbSpeed);
-                if (oneTime)
-                {
-                    StartCoroutine(StartRace());
-                }
-            }
-            else if (stopStartRace)
-            {
-                if (enemyManager.isStupid && agent.enabled == true)
-                {
-                    EnemyReachDestination();
-                }
-                else if (enemyManager.isSmart && agent.enabled == true)
-                {
-                    agent.SetDestination(new Vector3(listOfDesination[listOfDesination.Count - 1].x,
-                        listOfDesination[listOfDesination.Count - 1].y,
-                        listOfDesination[listOfDesination.Count - 1].z));
-                }
-            }
-        }
+        //if (DataManager.Instance.gameIsStart)
+        //{
+        //    if (!stopStartRace)
+        //    {
+        //        animator.SetBool("run", true);
+        //        agent.velocity = new Vector3(0, 0, rbSpeed);
+        //        if (oneTime)
+        //        {
+        //            StartCoroutine(StartRace());
+        //        }
+        //    }
+        //    else if (stopStartRace)
+        //    {
+        //        if (enemyManager.isStupid && agent.enabled == true)
+        //        {
+        //            EnemyReachDestination();
+        //        }
+        //        else if (enemyManager.isSmart && agent.enabled == true)
+        //        {
+        //            agent.SetDestination(new Vector3(listOfDesination[listOfDesination.Count - 1].x,
+        //                listOfDesination[listOfDesination.Count - 1].y,
+        //                listOfDesination[listOfDesination.Count - 1].z));
+        //        }
+        //    }
+        //}
         CheckGround();
     }
 
+    private void FixedUpdate()
+    {
+        if (DataManager.Instance.gameIsStart)
+        {
+            //EnemyMovefoward();
+            rb.velocity = new Vector3(0, rb.velocity.y, 1 * rbSpeed);
+
+        }
+    }
+
+    #region NavMeshAgent
     public IEnumerator StartRace()
     {
         oneTime = false;
@@ -152,7 +174,28 @@ public class EnemyMovement : MonoBehaviour
     //    yield return new WaitForSeconds(time);
     //    agent.enabled = true;
     //}
+    #endregion
 
+    public void EnemyMovefoward()
+    {
+        rb.velocity = new Vector3(0, rb.velocity.y, 1 * rbSpeed);
+    }
+
+    public void RayCastCheck()
+    {
+        if (rayCastOn)
+        {
+            float tempRotation = Y1Rotation;
+            float step = Mathf.Abs(Y1Rotation - Y2Rotation) / numerOfRay;
+            for (int i = 0; i < numerOfRay; i++)
+            {
+                Vector3 dir = Quaternion.Euler(0, tempRotation, 0) * Vector3.forward;
+                Physics.Raycast(child.transform.position, dir, 5, obstacleLayer);
+                tempRotation += step;
+            }
+        }
+    }
+    
     public void Jump()
     {
         agent.enabled = false;
@@ -188,6 +231,16 @@ public class EnemyMovement : MonoBehaviour
             Gizmos.color = Color.black;
 
             Gizmos.DrawWireSphere(new Vector3(listOfDesination[i].x, listOfDesination[i].y, listOfDesination[i].z), 0.5f);
+        }
+
+        Gizmos.color = Color.red;
+        float tempRotation = Y1Rotation;
+        float step = Mathf.Abs(Y1Rotation - Y2Rotation) / (numerOfRay - 1);
+        for (int i = 0; i < numerOfRay; i++)
+        {
+            Vector3 dir = Quaternion.Euler(0, tempRotation, 0) * Vector3.forward;
+            Gizmos.DrawRay(child.transform.position, Quaternion.Euler(0, tempRotation, 0) * Vector3.forward * raycastLength);
+            tempRotation += step;
         }
     }
 }

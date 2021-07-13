@@ -7,7 +7,7 @@ using DG.Tweening;
 public class CameraFollow : MonoBehaviour
 {
     public Vector3 offset;
-    public Transform player;
+    public GameObject player;
     public float smoothSpeed;
     public float smoothZSpeed;
     public float smoothXSpeed;
@@ -69,15 +69,15 @@ public class CameraFollow : MonoBehaviour
     //    }
     //}
 
-    private void LateUpdate()
+    private void Update()
     {
         if (player != null)
         {
-            //float desiredZPosition = player.position.z + offset.z;
-            //float smoothZPosition = Mathf.Lerp(transform.position.z, desiredZPosition, smoothZSpeed * Time.deltaTime);
+            float desiredZPosition = player.transform.position.z + offset.z;
+            float smoothZPosition = Mathf.Lerp(transform.position.z, desiredZPosition, smoothZSpeed * Time.deltaTime);
 
-            //float desiredXPosition = player.position.x + offset.x;
-            //float smoothXPosition = Mathf.Lerp(transform.position.x, desiredXPosition, smoothXSpeed * Time.deltaTime);
+            float desiredXPosition = player.transform.position.x + offset.x;
+            float smoothXPosition = Mathf.Lerp(transform.position.x, desiredXPosition, smoothXSpeed * Time.deltaTime);
 
             //transform.position = new Vector3(smoothXPosition, offset.y, player.transform.position.z + offset.z);
 
@@ -87,11 +87,14 @@ public class CameraFollow : MonoBehaviour
             //    //transform.position = player.position + offset;
             //}
 
-            //transform.position = new Vector3(smoothXPosition, offset.y, player.transform.position.z + offset.z);
+            transform.position = new Vector3(smoothXPosition, offset.y, player.transform.position.z + offset.z);
             //transform.position = player.position + offset;
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.position.x + offset.x, smoothXSpeed),
-                transform.position.y, player.position.z + offset.z);
-            //transform.position = player.position + offset;
+
+            //transform.position = new Vector3(smoothXPosition,
+            //    transform.position.y, smoothZPosition);
+
+            //transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x + offset.x, smoothXSpeed),
+            //    transform.position.y, Mathf.Lerp(transform.position.z, player.transform.position.z + offset.z, smoothZSpeed));
 
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool moveForward;
+    public bool moveForward;
     [Header("MoveSpeed")]
     public float moveSpeed;
     public float slowSpeed;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        MoveForward();
+        //MoveForward();
         if (playerManager.canMove && Input.GetMouseButtonDown(0))
         {
             lastCursorPosition = WorldMousePos();
@@ -54,28 +54,30 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
-        if (moveForward)
+        if (MoveForward())
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 1 * moveSpeed);
 
         }
-        else if (!moveForward)
+        if (!MoveForward())
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
+
     }
     public bool MoveForward()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            //moveForward = false;
+            return false;
+        }
         if (playerManager.canMove && Input.GetMouseButton(0))
         {
-            return moveForward = true;
+            //moveForward = true;
+            return true;
         }
-        else if (playerManager.canMove && Input.GetMouseButtonUp(0) )
-        {
-            return moveForward = false;
-        }
-        return moveForward = false;
+        return false;
     }
 
     public Vector2 WorldMousePos() => Input.mousePosition;
@@ -83,8 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void MoveHorizontal(float move)
     {
-        float deltaX = Mathf.Clamp(transform.position.x + move, -halfRange, halfRange) - transform.position.x;
-        //rb.position += Vector3.right * deltaX;
+        //float deltaX = Mathf.Clamp(transform.position.x + move, -halfRange, halfRange) - transform.position.x;
         rb.position = new Vector3(Mathf.Clamp(transform.position.x + move, -halfRange, halfRange), rb.position.y, rb.position.z);
     }
 

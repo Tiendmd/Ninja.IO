@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Component")]
     private Rigidbody rb;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
