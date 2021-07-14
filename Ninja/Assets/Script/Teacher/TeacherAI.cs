@@ -8,25 +8,29 @@ public class TeacherAI : MonoBehaviour
     public float timeLerp;
     public int i = 0;
     public bool allowPatrol;
-    [Range(0, 360)]
-    public List<float> angles = new List<float>();
-    public List<float> angles2 = new List<float>();
-    private FieldOfView fieldOfView;
+    //[Range(0, 360)]
+    //public List<float> angles = new List<float>();
+    //public List<float> angles2 = new List<float>();
+    public FieldOfView fieldOfView;
     private bool oneTime = true;
     private bool controlDelayToPatrol = true;
-    float velocity;
 
     public float idleToPatrolTime = 5f;
+    public Animator animator;
+    public Transform target;
+    [Range(-2.5f, 2.5f)]
+    public List<float> targetsXs = new List<float>();
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         fieldOfView = GetComponentInChildren<FieldOfView>();
         allowPatrol = true;
-        for (int i = 0; i < angles.Count; i++)
-        {
-            angles2.Add(angles[i]);
-        }
-        Invoke("StartPatrol", 2);
+        //for (int i = 0; i < angles.Count; i++)
+        //{
+        //    angles2.Add(angles[i]);
+        //}
+        StartCoroutine(StartPatrol());
         fieldOfView.enabled = false;
         fieldOfView.viewRadius = 0;
         fieldOfView.viewAngle = 0;
@@ -34,48 +38,54 @@ public class TeacherAI : MonoBehaviour
 
     private void Update()
     {
-        CheckReachFirst();
-        if (i < angles.Count && allowPatrol)
+        //CheckReachFirstPoint();
+        if (i < targetsXs.Count && allowPatrol)
         {
             CheckReachPatrolPoint();
         }
-        else if (i == angles.Count)
+        else if (i == targetsXs.Count)
         {
             ReachEndOfList();
         }
-        if (i < angles.Count && !allowPatrol && controlDelayToPatrol)
+        if (i < targetsXs.Count && !allowPatrol && controlDelayToPatrol)
         {
             StartCoroutine(DelayToPatrol());
         }
     }
 
-    public void StartPatrol()
+    IEnumerator StartPatrol()
     {
-        transform.DORotate(new Vector3(0, angles[0], 0), 2).SetEase(Ease.Linear);
+        //target.transform.position = new Vector3(0, target.transform.position.y, target.transform.position.z);
+        transform.DORotate(new Vector3(0, 180, 0), 2).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(2);
+        fieldOfView.enabled = true;
+        fieldOfView.viewAngle = fieldOfView.defaultViewAngle;
+        fieldOfView.viewRadius = fieldOfView.defaultViewRadius;
+        Patrol();
     }
 
-    public void CheckReachFirst()
-    {
-        if (Vector3.Distance(transform.rotation.eulerAngles, new Vector3(0, angles[0], 0)) <= 1)
-        {
-            fieldOfView.enabled = true;
-            fieldOfView.viewAngle = fieldOfView.defaultViewAngle;
-            fieldOfView.viewRadius = fieldOfView.defaultViewRadius;
-        }
-    }
+    //public void CheckReachFirstPoint()
+    //{
+    //    if (Vector3.Distance(new Vector3(target.transform.position.x, 0, 0), new Vector3(targetsXs[0], 0, 0)) <= 0.05f)
+    //    {
+    //        fieldOfView.enabled = true; 
+    //        fieldOfView.viewAngle = fieldOfView.defaultViewAngle;
+    //        fieldOfView.viewRadius = fieldOfView.defaultViewRadius;
+    //    }
+    //}
 
     public void Patrol()
     {
-        transform.DORotate(new Vector3(0, angles[i], 0), timeLerp).SetEase(Ease.Linear);
+        target.transform.DOMoveX(targetsXs[i], timeLerp).SetEase(Ease.Linear);
     }
 
 
     public void CheckReachPatrolPoint()
     {
-        if (Vector3.Distance(new Vector3(0, transform.rotation.eulerAngles.y, 0), new Vector3(0, angles[i], 0)) <= 0.1f)
+        if (Vector3.Distance(new Vector3(target.transform.position.x, 0, 0), new Vector3(targetsXs[i], 0, 0)) <= 0.05f)
         {
             i++;
-            if (i < angles.Count)
+            if (i < targetsXs.Count)
             {
                 Patrol();
             }
@@ -105,7 +115,9 @@ public class TeacherAI : MonoBehaviour
         controlDelayToPatrol = false;
         yield return new WaitForSeconds(idleToPatrolTime);
         DOTween.Kill(transform, false);
-        StartPatrol();
+        StartCoroutine(StartPatrol());
+        target.transform.position = new Vector3(0, target.transform.position.y, target.transform.position.z);
+
         allowPatrol = true;
         controlDelayToPatrol = true;
     }

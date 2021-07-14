@@ -82,9 +82,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &564572456169107239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForward: 0
-  moveSpeed: 7
+  moveSpeed: 4
   slowSpeed: 1
-  originMoveSpeed: 7
+  originMoveSpeed: 4
   jumpForce: 6
   child: {fileID: 564572455089152339}
   layer:
@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef37c802071584eac3fae69cc2a4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   canSlide: 1
   jumping: 0
   skin1: {fileID: 1509811631754168055}
@@ -152,6 +151,7 @@ MonoBehaviour:
   playerIsDead: 1
   enemyIsDead: 1
   constraint1: 112
+  place: 0
 --- !u!114 &878628593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 564572456264678597}
   - component: {fileID: 564572456264678602}
   - component: {fileID: 564572456264678603}
-  - component: {fileID: 564572456264678600}
+  - component: {fileID: 888136538}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: Player
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 564572456264678601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.35, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 564572456169107237}
   m_RootOrder: 2
@@ -225,7 +225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3721096122249686530, guid: f62f8fcc0dedb394c80832defe1ec6a4, type: 3}
+  - {fileID: -3721096122249686530, guid: 86fd3ba06ecc5ae49bf133511b0c150c, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,7 +247,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &564572456264678600
+--- !u!136 &888136538
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,8 +257,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.83
-  m_Height: 2
+  m_Radius: 0.33580813
+  m_Height: 0.7038563
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &564572456631884718
@@ -285,10 +285,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
+  m_Radius: 0.3358081
+  m_Height: 0.7038563
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1001 &564572456631884717
 PrefabInstance:
   m_ObjectHideFlags: 0

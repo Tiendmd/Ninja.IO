@@ -35,7 +35,7 @@ public class CheckPoint : MonoBehaviour
         }
         if (teacher != null)
         {
-            DataManager.Instance.listOfTeacher.RemoveAt(0);
+            MyScene.Instance.listOfTeacher.RemoveAt(0);
             teacher.GetComponent<TeacherAI>().KillTeacher();
         }
     }

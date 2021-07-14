@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8529271160743920996}
   - component: {fileID: 8529271160743920997}
   - component: {fileID: 8529271160743920998}
+  - component: {fileID: 2056054066}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -131,6 +132,20 @@ MonoBehaviour:
   flags:
   - {fileID: 1161010426344719136}
   - {fileID: 2475086968166874984}
+  confettiParticle: {fileID: 4777693137976714930, guid: a9e8b2b34c4895b42819fb3d126f9a61, type: 3}
+--- !u!65 &2056054066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529271160743921019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10, z: 1}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1001 &1699552135545365707
 PrefabInstance:
   m_ObjectHideFlags: 0

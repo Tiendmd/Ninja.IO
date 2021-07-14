@@ -19,11 +19,11 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Component")]
     private Rigidbody rb;
-    public NavMeshAgent agent;
+    //public NavMeshAgent agent;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
         playerManager = GetComponent<PlayerManager>();
         skin1OriginSize = playerManager.skin1.transform.localScale;
         skin2OriginSize = playerManager.skin2.transform.localScale;
@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SmartStupidControl()
     {
-        if (Mathf.Abs(DataManager.Instance.finishZ - transform.position.z) >= Mathf.Abs(DataManager.Instance.finishZ - player.position.z))
+        if (Mathf.Abs(MyScene.Instance.finishZ - transform.position.z) >= Mathf.Abs(MyScene.Instance.finishZ - player.position.z))
         {
             int a = Random.Range(0, 100);
             if (a < percentToSmart)
@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
                 isStupid = false;
             }
         }
-        else if (Mathf.Abs(DataManager.Instance.finishZ - transform.position.z) < Mathf.Abs(DataManager.Instance.finishZ - player.position.z))
+        else if (Mathf.Abs(MyScene.Instance.finishZ - transform.position.z) < Mathf.Abs(MyScene.Instance.finishZ - player.position.z))
         {
             int a = Random.Range(0, 100);
             if (a > percentToSmart && a < percentToStupid)

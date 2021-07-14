@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 139496470942629563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.35, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 139496471106514263}
   m_RootOrder: 1
@@ -184,8 +184,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.83
-  m_Height: 2
+  m_Radius: 0.33580813
+  m_Height: 0.7038563
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &139496471106514267
@@ -241,7 +241,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!195 &7317150365028458126
@@ -251,7 +251,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139496471106514267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 7
@@ -299,7 +299,6 @@ MonoBehaviour:
   percentToStupid: 100
   timeBetweenInvoke: 3
   player: {fileID: 0}
-  agent: {fileID: 0}
 --- !u!114 &807574068009359362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +321,7 @@ MonoBehaviour:
   - {x: -0.05, y: 0.5, z: 77.6, w: 2}
   - {x: -0.05, y: 0.5, z: 86.7, w: 3}
   - {x: -0.39, y: 0.5, z: 96, w: 0}
-  rbSpeed: 7
+  rbSpeed: 4
   overrideSetDestination: 0
   jumpForce: 6
   child: {fileID: 727145190}
@@ -330,6 +329,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   pressing: 0
+  slideForce: 0.1
+  slideRight: 0
+  slideLeft: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1280
+  Y1Rotation: -15
+  raycastLength: 5
+  numerOfRay: 19
+  scanFrequence: 60
+  intelligent: 7
 --- !u!114 &3957660980009088991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef37c802071584eac3fae69cc2a4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   canSlide: 0
   jumping: 0
   skin1: {fileID: 573221075292166811}
@@ -352,10 +361,11 @@ MonoBehaviour:
   isSkin1: 0
   isSkin2: 0
   timeBetweenResurrect: 2
-  checkPointPosition: {x: 0, y: 0, z: 0}
+  checkPointPosition: {x: 0, y: 0.5, z: 0}
   playerIsDead: 1
   enemyIsDead: 1
   constraint1: 116
+  place: 0
 --- !u!1 &190351017928946095
 GameObject:
   m_ObjectHideFlags: 0

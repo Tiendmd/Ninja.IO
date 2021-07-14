@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public bool canMove;
+    public bool canMove { get; set; }
     public bool canSlide;
     public bool jumping;
     public GameObject skin1;
@@ -13,23 +13,31 @@ public class PlayerManager : MonoBehaviour
     public CameraFollow myCamera;
     public bool isSkin1;
     public bool isSkin2;
-    private NavMeshAgent agent;
+    //private NavMeshAgent agent;
     public float timeBetweenResurrect = 2;
 
     public Vector3 checkPointPosition;
     public bool playerIsDead = true;
+
     public bool enemyIsDead = true;
+    private EnemyManager enemyManager;
+
     private Rigidbody rb;
     private PlayerInput playerInput;
     public Animator animator { get; set; }
     public RigidbodyConstraints constraint1 = RigidbodyConstraints.FreezeRotation;
+
+    [Header("Placement")]
+    public int place;
+
     private void Start()
     {
-        if (transform.tag == "Enemy")
-        {
-            agent = GetComponent<NavMeshAgent>();
-        }
+        //if (transform.tag == "Enemy")
+        //{
+        //    agent = GetComponent<NavMeshAgent>();
+        //}
         playerInput = GetComponent<PlayerInput>();
+        enemyManager = GetComponent<EnemyManager>();
         canMove = true;
         isSkin1 = true;
         rb = GetComponent<Rigidbody>();
@@ -67,7 +75,6 @@ public class PlayerManager : MonoBehaviour
         {
             playerIsDead = false;
             canMove = false;
-            //animator.SetTrigger("run");
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
             transform.GetComponent<PlayerInput>().enabled = false;
             transform.GetComponent<PlayerMovement>().enabled = false;
@@ -75,7 +82,6 @@ public class PlayerManager : MonoBehaviour
             animator.SetTrigger(a);
             myCamera.player = null;
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
-
             yield return new WaitForSeconds(delay);
             animator.SetTrigger("idle");
             rb.velocity = new Vector3(0, 0, 0);
@@ -87,12 +93,6 @@ public class PlayerManager : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.position = checkPointPosition;
             StartCoroutine(playerInput.Skin2ToSkin1());
-
-            //skin1.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-            //skin1.GetComponent<CapsuleCollider>().enabled = true;
-            //skin2.GetComponent<CapsuleCollider>().enabled = false;
-            //skin2.GetComponent<MeshRenderer>().enabled = false;
-
             for (int i = 0; i < b.Length; i++)
             {
                 b[i].enabled = true;
@@ -113,34 +113,30 @@ public class PlayerManager : MonoBehaviour
         if (enemyIsDead)
         {
             enemyIsDead = false;
-            StopCoroutine(GetComponent<EnemyMovement>().DemandCase23());
-            StopCoroutine(GetComponent<EnemyMovement>().DemandCase4());
             StopCoroutine(GetComponent<EnemyMovement>().DelayJump());
-            agent.velocity = Vector3.zero;
-            agent.speed = 0;
-            agent.enabled = false;
+            rb.velocity = Vector3.zero;
             transform.GetComponent<EnemyMovement>().enabled = false;
             animator.SetBool("run", false);
             animator.SetTrigger(a);
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
             // sau delay giay thi sinh ra cho moi
             yield return new WaitForSeconds(delay);
+            rb.velocity = new Vector3(0, 0, 0);
+
             for (int i = 0; i < b.Length; i++)
             {
                 b[i].enabled = true;
             }
             animator.SetTrigger("idle");
-            agent.enabled = true;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-
             rb.constraints = constraint1;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.position = checkPointPosition;
+            StartCoroutine(enemyManager.EnemySkin2ToSkin1());
+
             // sau 0.5s idle thi sang run
             yield return new WaitForSeconds(0.5f);
             transform.GetComponent<EnemyMovement>().enabled = true;
-
-            agent.speed = GetComponent<EnemyMovement>().rbSpeed;
-            agent.velocity = new Vector3(0, 0, GetComponent<EnemyMovement>().rbSpeed);
+            rb.velocity = new Vector3(0, 0, GetComponent<EnemyMovement>().rbSpeed);
             animator.SetBool("run", true);
             enemyIsDead = true;
         }
@@ -150,7 +146,7 @@ public class PlayerManager : MonoBehaviour
     public void EnemyKick(Vector3 kickDirection)
     {
         rb.constraints = RigidbodyConstraints.None;
-        agent.enabled = false;
+        //agent.enabled = false;
         rb.AddForce(kickDirection, ForceMode.Impulse);
         StartCoroutine(EnemyDelay(timeBetweenResurrect, "die"));
     }
@@ -169,5 +165,21 @@ public class PlayerManager : MonoBehaviour
             b[i].enabled = false;
         }
         StartCoroutine(EnemyDelay(timeBetweenResurrect, "fall"));
+    }
+
+    public int CoinGain(int a)
+    {
+        if (a == 1)
+        {
+            return 700;
+        }
+        else if (a == 2)
+        {
+            return 500;
+        }
+        else
+        {
+            return 300;
+        }
     }
 }

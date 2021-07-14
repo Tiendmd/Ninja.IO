@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //MoveForward();
         if (playerManager.canMove && Input.GetMouseButtonDown(0))
         {
             lastCursorPosition = WorldMousePos();
@@ -51,19 +50,21 @@ public class PlayerMovement : MonoBehaviour
             lastCursorPosition = Input.mousePosition;
         }
         CheckGround();
+
     }
     private void FixedUpdate()
     {
-        if (MoveForward())
+        if (MyScene.Instance.gameIsStart == true)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 1 * moveSpeed);
-
+            if (MoveForward())
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, 1 * moveSpeed);
+            }
+            if (!MoveForward())
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            }
         }
-        if (!MoveForward())
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
-
     }
     public bool MoveForward()
     {
