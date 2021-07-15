@@ -38,13 +38,6 @@ public class UIManager : MonoBehaviour
         panel.gameObject.SetActive(false);
     }
 
-    public void NextLevelBtnClick()
-    {
-        DOTween.KillAll();
-        int a = player.GetComponent<PlayerManager>().CoinGain(player.GetComponent<PlayerManager>().place);
-        GameData.Instance.UpdateAllStats(1, a);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
     public void StartGame()
     {
         settingBtn.gameObject.SetActive(false);
@@ -57,6 +50,6 @@ public class UIManager : MonoBehaviour
     public void FinishRun()
     {
         nextLevelBtn.SetActive(true);
-
     }
+
 }

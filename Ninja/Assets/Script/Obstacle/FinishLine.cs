@@ -21,7 +21,9 @@ public class FinishLine : MonoBehaviour
                 Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), list[i]);
             }
             StartCoroutine(Delay(transform.position - Vector3.right*2.5f, transform.position + Vector3.right * 2.5f));
-            other.GetComponentInParent<PlayerManager>().place = MyScene.Instance.placeCount;
+            int a =  MyScene.Instance.placeCount;
+            other.GetComponentInParent<PlayerManager>().place = a;
+            GameDataManager.Instance.DoUpdateWhenFinishedRun(a);
             UIManager.Instance.FinishRun();
         }
         else if (other.transform.tag == "Enemy")

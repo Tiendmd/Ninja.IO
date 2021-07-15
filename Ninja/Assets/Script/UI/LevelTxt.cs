@@ -9,11 +9,7 @@ public class LevelTxt : MonoBehaviour
 
     private void Start()
     {
-        SetLevelText(GameData.Instance.level);
+        levelTxt.SetText("Level " + GameDataManager.Instance.gameDataScrObj.level);
     }
 
-    public void SetLevelText(int levelNumber)
-    {
-        levelTxt.SetText("Level " + levelNumber);
-    }
 }

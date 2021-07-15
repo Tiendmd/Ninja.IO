@@ -60,14 +60,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b9d7b71ab37914dbab86f0c69b0736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  playerSkin1: {fileID: 0}
-  playerSkin2MeshRenderer: {fileID: 0}
-  playerSkin2MeshFilter: {fileID: 0}
-  coin: 0
-  skin1: 0
-  skin2_1: 0
-  skin2_2: 0
-  listSkin1: []
-  listSkin2_1: []
-  listSkin2_2: []
+  gameDataScrObj: {fileID: 11400000, guid: 618069a874c5a974fb9f02a20375ef37, type: 2}

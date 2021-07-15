@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
     public bool slideLeft;
     [Header("CheckForward")]
     public LayerMask obstacleLayer;
+    public LayerMask wallLayer;
     public float Y1Rotation;
     private float Y2Rotation;
     private bool rayCastOn;
@@ -258,41 +259,29 @@ public class EnemyMovement : MonoBehaviour
                     int temp3 = Random.Range(0, 10);
                     if (temp3 <= 4)
                     {
-                        transform.DOMoveX(transform.position.x - 0.5f, 1);
+                        if (RayCastLeft())
+                        {
+                            transform.DOMoveX(transform.position.x - 0.5f, 1);
+
+                        }
+                        else if (RayCastRight())
+                        {
+                            transform.DOMoveX(transform.position.x + 0.5f, 1);
+                        }
                     }
                     else
                     {
-                        transform.DOMoveX(transform.position.x + 0.5f, 1);
+                        return;
                     }
                 }
             }
+
             else if (intelligent >= 4 && intelligent <= 6)
             {
                 int temp = Random.Range(0, 10);
                 if (temp <= 4)
                 {
-                    if (listOfVector0.Count!=0)
-                    {
-                        int temp2 = Mathf.FloorToInt(MyRandom(listOfVector0.Count));
-                        CaculateX(listOfVector0[temp2]);
-                    }
-                    else
-                    {
-                        int temp3 = Random.Range(0, 10);
-                        if (temp3 <=4)
-                        {
-                            transform.DOMoveX(transform.position.x - 0.5f, 1);
-                        }
-                        else
-                        {
-                            transform.DOMoveX(transform.position.x + 0.5f, 1);
-                        }
-                    }
-
-                }
-                else
-                {
-                    if (listOfVectorNotZero.Count!=0)
+                    if (listOfVectorNotZero.Count != 0)
                     {
                         int temp2 = Mathf.FloorToInt(MyRandom(listOfVectorNotZero.Count));
                         transform.DOMoveX(listOfVectorNotZero[temp2].x, scanFrequence / 60);
@@ -302,17 +291,45 @@ public class EnemyMovement : MonoBehaviour
                         int temp3 = Random.Range(0, 10);
                         if (temp3 <= 4)
                         {
-                            transform.DOMoveX(transform.position.x - 1, 1);
-                        }
-                        else
-                        {
-                            transform.DOMoveX(transform.position.x + 1, 1);
+                            if (RayCastLeft())
+                            {
+                                transform.DOMoveX(transform.position.x - 0.5f, 1);
+
+                            }
+                            else if (RayCastRight())
+                            {
+                                transform.DOMoveX(transform.position.x + 0.5f, 1);
+                            }
                         }
                     }
+                }
+                else
+                {
+                    if (listOfVector0.Count != 0)
+                    {
+                        int temp2 = Mathf.FloorToInt(MyRandom(listOfVector0.Count));
+                        CaculateX(listOfVector0[temp2]);
+                    }
+                    else
+                    {
+                        int temp3 = Random.Range(0, 10);
+                        if (temp3 <= 7)
+                        {
+                            if (RayCastLeft())
+                            {
+                                transform.DOMoveX(transform.position.x - 0.5f, 1);
 
+                            }
+                            else if (RayCastRight())
+                            {
+                                transform.DOMoveX(transform.position.x + 0.5f, 1);
+                            }
+                        }
+                    }
                 }
             }
-            if (intelligent >=7 && intelligent <=9)
+
+            else if (intelligent >=7 && intelligent <=9)
             {
                 if (listOfVector0.Count!=0)
                 {
@@ -321,19 +338,37 @@ public class EnemyMovement : MonoBehaviour
                 }
                 else
                 {
-                    int temp3 = Random.Range(0, 10);
-                    if (temp3 <= 4)
-                    {
-                        transform.DOMoveX(transform.position.x - 1, 1);
-                    }
-                    else
-                    {
-                        transform.DOMoveX(transform.position.x + 1, 1);
-                    }
+                        if (RayCastLeft())
+                        {
+                            transform.DOMoveX(transform.position.x - 0.5f, 1);
+
+                        }
+                        else if (RayCastRight())
+                        {
+                            transform.DOMoveX(transform.position.x + 0.5f, 1);
+                        }
                 }
 
             }
         }
+    }
+
+    public bool RayCastLeft()
+    {
+        if (Physics.Raycast(child.transform.position, -Vector3.right, 1, wallLayer))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool RayCastRight()
+    {
+        if (Physics.Raycast(child.transform.position, Vector3.right, 1, obstacleLayer))
+        {
+            return true;
+        }
+        return false;
     }
 
     public int MyRandom(int a)

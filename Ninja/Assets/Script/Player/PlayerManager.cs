@@ -167,19 +167,4 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(EnemyDelay(timeBetweenResurrect, "fall"));
     }
 
-    public int CoinGain(int a)
-    {
-        if (a == 1)
-        {
-            return 700;
-        }
-        else if (a == 2)
-        {
-            return 500;
-        }
-        else
-        {
-            return 300;
-        }
-    }
 }
