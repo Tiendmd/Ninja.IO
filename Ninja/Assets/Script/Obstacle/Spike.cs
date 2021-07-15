@@ -13,7 +13,7 @@ public class Spike : MonoBehaviour
         }
         else if (other.transform.tag == "Enemy")
         {
-            other.GetComponentInParent<NavMeshAgent>().speed = 1;
+            other.GetComponentInParent<EnemyMovement>().rbSpeed = 1;
         }
 
     }
@@ -26,7 +26,7 @@ public class Spike : MonoBehaviour
         }
         else if (other.transform.tag == "Enemy")
         {
-            other.GetComponentInParent<NavMeshAgent>().speed = other.GetComponentInParent<EnemyMovement>().rbSpeed;
+            other.GetComponentInParent<EnemyMovement>().rbSpeed = other.GetComponentInParent<EnemyMovement>().rbSpeedOrigin;
         }
     }
 }

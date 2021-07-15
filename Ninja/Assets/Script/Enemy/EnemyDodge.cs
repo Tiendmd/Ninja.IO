@@ -55,7 +55,6 @@ public class EnemyDodge : MonoBehaviour
             }
             else if (enemyMovement.intelligent > 5)
             {
-                Debug.Log("nup");
                 rb.velocity = Vector3.zero;
                 transform.GetComponent<EnemyMovement>().enabled = false;
                 //transform.GetComponent<NavMeshAgent>().enabled = false;
@@ -74,7 +73,6 @@ public class EnemyDodge : MonoBehaviour
             }
             else if (enemyMovement.intelligent > 5)
             {
-                Debug.Log("normal");
                 StartCoroutine(enemyManager.EnemySkin2ToSkin1());
                 transform.GetComponent<EnemyMovement>().enabled = true;
                 //transform.GetComponent<NavMeshAgent>().enabled = true;

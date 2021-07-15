@@ -71,6 +71,10 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
         if (player != null)
         {
             float desiredZPosition = player.transform.position.z + offset.z;

@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForward: 0
-  moveSpeed: 4
+  moveSpeed: 7
   slowSpeed: 1
-  originMoveSpeed: 4
+  originMoveSpeed: 7
   jumpForce: 6
   child: {fileID: 564572455089152339}
   layer:
@@ -257,10 +257,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.33580813
-  m_Height: 0.7038563
+  m_Radius: 0.3
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!136 &564572456631884718
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -285,10 +285,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3358081
-  m_Height: 0.7038563
+  m_Radius: 0.3
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.35, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &564572456631884717
 PrefabInstance:
   m_ObjectHideFlags: 0

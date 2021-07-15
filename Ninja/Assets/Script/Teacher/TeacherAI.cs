@@ -57,8 +57,10 @@ public class TeacherAI : MonoBehaviour
     {
         //target.transform.position = new Vector3(0, target.transform.position.y, target.transform.position.z);
         transform.DORotate(new Vector3(0, 180, 0), 2).SetEase(Ease.Linear);
+        animator.SetBool("turn", true);
         yield return new WaitForSeconds(2);
         fieldOfView.enabled = true;
+        animator.SetTrigger("lookup");
         fieldOfView.viewAngle = fieldOfView.defaultViewAngle;
         fieldOfView.viewRadius = fieldOfView.defaultViewRadius;
         Patrol();
@@ -82,6 +84,28 @@ public class TeacherAI : MonoBehaviour
 
     public void CheckReachPatrolPoint()
     {
+        //int a = Random.Range(0, 10);
+        //Collider[] list = new Collider[0];
+        //if ((int)Time.frameCount % 30 ==0)
+        //{
+        //    list = Physics.OverlapSphere(transform.position, fieldOfView.viewRadius, fieldOfView.targetMask);
+        //}
+        //if (a<=4)
+        //{
+        //    if (Vector3.Distance(new Vector3(target.transform.position.x, 0, 0), new Vector3(targetsXs[i], 0, 0)) <= 0.05f)
+        //    {
+        //        i++;
+        //        if (i < targetsXs.Count)
+        //        {
+        //            Patrol();
+        //        }
+        //    }
+        //}
+        //else if (list.Length > 0 && a > 5)
+        //{
+        //    DOTween.Kill(transform);
+        //    target.transform.DOMoveX(list[Mathf.FloorToInt(Random.Range(0, list.Length))].transform.position.x, 1);
+        //}
         if (Vector3.Distance(new Vector3(target.transform.position.x, 0, 0), new Vector3(targetsXs[i], 0, 0)) <= 0.05f)
         {
             i++;
@@ -98,7 +122,9 @@ public class TeacherAI : MonoBehaviour
         allowPatrol = false;
         if (oneTime)
         {
-            transform.DORotate(Vector3.zero, timeLerp / 1.25f).SetEase(Ease.Linear);
+            animator.SetTrigger("looktoturn");
+            transform.DORotate(Vector3.zero, 2).SetEase(Ease.Linear);
+            StartCoroutine(Delay(2));
             oneTime = false;
         }
         if (fieldOfView.viewAngle <= 0.0001f)
@@ -109,12 +135,19 @@ public class TeacherAI : MonoBehaviour
         }
     }
 
+    IEnumerator Delay(float a)
+    {
+        yield return new WaitForSeconds(a);
+        animator.SetBool("turn", false);
+    }
+
     IEnumerator DelayToPatrol()
     {
         oneTime = true;
         controlDelayToPatrol = false;
         yield return new WaitForSeconds(idleToPatrolTime);
         DOTween.Kill(transform, false);
+        DOTween.Kill(target.transform, false);
         StartCoroutine(StartPatrol());
         target.transform.position = new Vector3(0, target.transform.position.y, target.transform.position.z);
 
@@ -125,6 +158,7 @@ public class TeacherAI : MonoBehaviour
     public void KillTeacher()
     {
         DOTween.Kill(transform, false);
+        DOTween.Kill(target.transform, false);
         Destroy(gameObject);
     }
 }

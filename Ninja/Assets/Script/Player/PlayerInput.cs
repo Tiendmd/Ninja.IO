@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour
         {
             StartCoroutine(Skin2ToSkin1());
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0) && playerManager.isSkin1)
+        if (Input.GetKeyUp(KeyCode.Mouse0) )
         {
             checkAnimationRun = true;
             StartCoroutine(Skin1ToSkin2());

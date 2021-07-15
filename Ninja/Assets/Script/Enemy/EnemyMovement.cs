@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     //private NavMeshAgent agent;
     public Rigidbody rb { get; set; }
     public float rbSpeed;
+    public float rbSpeedOrigin;
     public Animator animator { get; set; }
     private bool stopStartRace = false;
 
@@ -57,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
         //               listOfDesination[0].y,
         //               listOfDesination[0].z));
         Y2Rotation = -Y1Rotation;
-
+        rbSpeedOrigin = rbSpeed;
         rayCastOn = true;
         slideLeft = false;
         slideRight = false;
@@ -399,7 +400,6 @@ public class EnemyMovement : MonoBehaviour
 
     public void Jump()
     {
-        //agent.enabled = false;
         rb.AddForce(new Vector3(rb.velocity.x, 1 * jumpForce, 3.55f), ForceMode.Impulse);
         animator.SetBool("jump", true);
         StartCoroutine(DelayJump());

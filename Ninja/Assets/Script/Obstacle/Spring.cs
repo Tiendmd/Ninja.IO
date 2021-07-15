@@ -13,7 +13,6 @@ public class Spring : MonoBehaviour
         }
         else if (other.transform.CompareTag("Enemy"))
         {
-            other.GetComponentInParent<NavMeshAgent>().enabled = false;
             other.GetComponentInParent<EnemyMovement>().Jump();
 
         }

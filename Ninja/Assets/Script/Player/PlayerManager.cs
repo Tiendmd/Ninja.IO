@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
     public void PlayerKick(Vector3 kickDirection)
     {
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(kickDirection, ForceMode.Impulse);
+        rb.AddForce(kickDirection, ForceMode.VelocityChange);
         StartCoroutine(Delay(timeBetweenResurrect, "die"));
     }
 
@@ -145,9 +145,9 @@ public class PlayerManager : MonoBehaviour
 
     public void EnemyKick(Vector3 kickDirection)
     {
+        //rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.None;
-        //agent.enabled = false;
-        rb.AddForce(kickDirection, ForceMode.Impulse);
+        rb.AddForce(kickDirection, ForceMode.VelocityChange);
         StartCoroutine(EnemyDelay(timeBetweenResurrect, "die"));
     }
 
