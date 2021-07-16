@@ -10,14 +10,12 @@ public class PlayerInput : MonoBehaviour
     private Vector3 skin1OriginSize;
     private Vector3 skin2OriginSize;
     public float scaleTime;
-    private bool oneTime = true;
-    public bool checkAnimationRun = true;
+    public bool checkAnimationRun { get; set; }
 
-
-    [Header("Component")]
-    private Animator animator;
+    public Animator animator { get; set; }
     private void Start()
     {
+        checkAnimationRun = true;
         animator = GetComponentInChildren<Animator>();
         playerManager = GetComponent<PlayerManager>();
         skin1OriginSize = playerManager.skin1.transform.localScale;
@@ -25,11 +23,6 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse0) && oneTime)
-        //{
-        //    //DataManager.Instance.gameIsStart = true;
-        //    oneTime = false;
-        //}
         if (MyScene.Instance.gameIsStart == true)
         {
             if (Input.GetKey(KeyCode.Mouse0) && checkAnimationRun && playerManager.canMove)

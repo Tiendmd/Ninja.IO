@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class EnemyDodge : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class EnemyDodge : MonoBehaviour
     private EnemyMovement enemyMovement;
     private Rigidbody rb;
     public MyScene dataManager;
-    private TeacherAI teacher;
+    public GameObject teacher;
     private FieldOfView fov;
     [Range(0, 100)]
     public float dodgePercent;
@@ -30,6 +31,7 @@ public class EnemyDodge : MonoBehaviour
     private void Update()
     {
         EnemyDodgeControl();
+
     }
 
     public void EnemyDodgeControl()
@@ -38,7 +40,7 @@ public class EnemyDodge : MonoBehaviour
         {
             return;
         }
-        if (Vector3.Angle((transform.position - teacher.transform.position), teacher.transform.forward) < fov.viewAngle / 2 + 5
+        if (Vector3.Angle((transform.position - teacher.transform.position), fov.transform.forward) < fov.viewAngle / 2 + 5
             && Vector3.Distance(transform.position, teacher.transform.position) <= fov.viewRadius && oneTime)
         {
             if (enemyMovement.intelligent <=5)
@@ -47,6 +49,8 @@ public class EnemyDodge : MonoBehaviour
                 if (a < dodgePercent)
                 {
                     rb.velocity = Vector3.zero;
+                    DOTween.Kill(transform);
+
                     transform.GetComponent<EnemyMovement>().enabled = false;
                     //transform.GetComponent<NavMeshAgent>().enabled = false;
                     StartCoroutine(enemyManager.EnemySkin1ToSkin2());
@@ -56,6 +60,7 @@ public class EnemyDodge : MonoBehaviour
             else if (enemyMovement.intelligent > 5)
             {
                 rb.velocity = Vector3.zero;
+                DOTween.Kill(transform);
                 transform.GetComponent<EnemyMovement>().enabled = false;
                 //transform.GetComponent<NavMeshAgent>().enabled = false;
                 StartCoroutine(enemyManager.EnemySkin1ToSkin2());
@@ -63,9 +68,10 @@ public class EnemyDodge : MonoBehaviour
             }
             oneTime = false;
         }
-        else if (Vector3.Angle((transform.position - teacher.transform.position), teacher.transform.forward) > fov.viewAngle / 2 + 5
+        else if (Vector3.Angle((transform.position - teacher.transform.position), fov.transform.forward) > fov.viewAngle / 2 + 5
             && Vector3.Distance(transform.position, teacher.transform.position) <= fov.viewRadius && !oneTime)
         {
+
             if (enemyMovement.intelligent <= 5)
             {
                 int a = Random.Range(0, 3);

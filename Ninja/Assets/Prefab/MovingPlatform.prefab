@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x1: 2
   x2: -2
-  timeBetweenX: 2
+  timeBetweenX: 3
 --- !u!1001 &3735170259152237974
 PrefabInstance:
   m_ObjectHideFlags: 0

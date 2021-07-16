@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPlayerY : MonoBehaviour
 {
     PlayerManager playerManager;
-    public bool oneTime = true;
+    private bool oneTime = true;
 
     private void Start()
     {

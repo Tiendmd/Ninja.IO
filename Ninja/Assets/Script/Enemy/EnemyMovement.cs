@@ -253,7 +253,7 @@ public class EnemyMovement : MonoBehaviour
                 if (listOfVectorNotZero.Count !=0)
                 {
                     int temp = Mathf.FloorToInt(MyRandom(listOfVectorNotZero.Count));
-                    transform.DOMoveX(listOfVectorNotZero[temp].x, scanFrequence / 60);
+                    transform.DOMoveX(listOfVectorNotZero[temp].x, 1);
                 }
                 else
                 {
@@ -285,7 +285,7 @@ public class EnemyMovement : MonoBehaviour
                     if (listOfVectorNotZero.Count != 0)
                     {
                         int temp2 = Mathf.FloorToInt(MyRandom(listOfVectorNotZero.Count));
-                        transform.DOMoveX(listOfVectorNotZero[temp2].x, scanFrequence / 60);
+                        transform.DOMoveX(listOfVectorNotZero[temp2].x, 1);
                     }
                     else
                     {
@@ -294,12 +294,11 @@ public class EnemyMovement : MonoBehaviour
                         {
                             if (RayCastLeft())
                             {
-                                transform.DOMoveX(transform.position.x - 0.5f, 1);
-
+                                transform.DOMoveX(transform.position.x + 0.5f, 1);
                             }
                             else if (RayCastRight())
                             {
-                                transform.DOMoveX(transform.position.x + 0.5f, 1);
+                                transform.DOMoveX(transform.position.x - 0.5f, 1);
                             }
                         }
                     }
@@ -318,12 +317,12 @@ public class EnemyMovement : MonoBehaviour
                         {
                             if (RayCastLeft())
                             {
-                                transform.DOMoveX(transform.position.x - 0.5f, 1);
+                                transform.DOMoveX(transform.position.x + 1f, 1);
 
                             }
                             else if (RayCastRight())
                             {
-                                transform.DOMoveX(transform.position.x + 0.5f, 1);
+                                transform.DOMoveX(transform.position.x - 1f, 1);
                             }
                         }
                     }
@@ -341,12 +340,11 @@ public class EnemyMovement : MonoBehaviour
                 {
                         if (RayCastLeft())
                         {
-                            transform.DOMoveX(transform.position.x - 0.5f, 1);
-
+                            transform.DOMoveX(transform.position.x + 1.5f, 2);
                         }
                         else if (RayCastRight())
                         {
-                            transform.DOMoveX(transform.position.x + 0.5f, 1);
+                            transform.DOMoveX(transform.position.x - 1.5f, 2);
                         }
                 }
 
@@ -356,16 +354,17 @@ public class EnemyMovement : MonoBehaviour
 
     public bool RayCastLeft()
     {
-        if (Physics.Raycast(child.transform.position, -Vector3.right, 1, wallLayer))
+        if (Physics.Raycast(child.transform.position, -Vector3.right, 3, wallLayer))
         {
             return true;
         }
         return false;
     }
 
+
     public bool RayCastRight()
     {
-        if (Physics.Raycast(child.transform.position, Vector3.right, 1, obstacleLayer))
+        if (Physics.Raycast(child.transform.position, Vector3.right, 3, obstacleLayer))
         {
             return true;
         }
@@ -382,7 +381,7 @@ public class EnemyMovement : MonoBehaviour
         float referenceX = 0;
         referenceX = Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(Vector3.right, dir)) * raycastLength;
         desiredX = transform.position.x + referenceX;
-        transform.DOMoveX(desiredX, scanFrequence / 60);
+        transform.DOMoveX(desiredX, 1);
 
     }
 
@@ -443,5 +442,8 @@ public class EnemyMovement : MonoBehaviour
             Gizmos.DrawRay(child.transform.position, Quaternion.Euler(0, tempRotation, 0) * Vector3.forward * raycastLength);
             tempRotation += step;
         }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(child.transform.position, Vector3.right*2);
+        Gizmos.DrawRay(child.transform.position, -Vector3.right*2);
     }
 }

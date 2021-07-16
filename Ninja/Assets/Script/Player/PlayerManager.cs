@@ -32,10 +32,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        //if (transform.tag == "Enemy")
-        //{
-        //    agent = GetComponent<NavMeshAgent>();
-        //}
+
         playerInput = GetComponent<PlayerInput>();
         enemyManager = GetComponent<EnemyManager>();
         canMove = true;

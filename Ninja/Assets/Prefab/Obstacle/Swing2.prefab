@@ -155,9 +155,8 @@ GameObject:
   - component: {fileID: 3463724682705333199}
   - component: {fileID: 3463724682705333194}
   - component: {fileID: 3463724682705333197}
-  - component: {fileID: 3463724682705333196}
   - component: {fileID: 3463724682705333195}
-  - component: {fileID: 2991379178860011803}
+  - component: {fileID: 768109184}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Swing
@@ -228,19 +227,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3463724682705333196
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463724682705333198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3463724682705333195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,19 +239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8035bf731ed4614880b169d78246b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &2991379178860011803
-NavMeshObstacle:
+--- !u!136 &768109184
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3463724682705333198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: -0.00000047683716, y: -0.00000011920929, z: 0}

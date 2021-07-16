@@ -68,7 +68,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3848286288827282018}
   - component: {fileID: 3848286288827282029}
-  - component: {fileID: 651426442}
   m_Layer: 8
   m_Name: Swing
   m_TagString: Untagged
@@ -110,22 +109,6 @@ MonoBehaviour:
   defaultTimer: 4
   child: {fileID: 8068947082727946685}
   destinationX: -1
---- !u!208 &651426442
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3848286288827282019}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.75, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3848286289351370697
 GameObject:
   m_ObjectHideFlags: 0

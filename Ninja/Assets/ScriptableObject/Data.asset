@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   level: 1
-  totalCoin: 0
+  totalCoin: 3300
   listSkin1: []
   listSkin2_1: []
   listSkin2_2: []

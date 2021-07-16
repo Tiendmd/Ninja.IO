@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298892412131455670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000004162493, y: 0.74948776, z: 1.2164955}
+  m_LocalPosition: {x: 0, y: 0.65, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1670815554066160749}
@@ -136,6 +136,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &564578172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045827512260347607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb22fc25855492d459b4c33d8c82d163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2093810992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,16 +211,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view1: 0
   view2: 1
-  viewRadius: 19.33
-  defaultViewRadius: 19
-  viewAngle: 22
-  defaultViewAngle: 22
+  viewRadius: 15
+  defaultViewRadius: 15
+  viewAngle: 10
+  defaultViewAngle: 10
   targetMask:
     serializedVersion: 2
     m_Bits: 192
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   visibleTargets: []
   meshResolution: 30
   edgeResolveIterations: 1
@@ -307,13 +319,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024cd2d5e5ef9784bb30c75681eadf47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLerp: 1
+  timeLerp: 3
   i: 0
   allowPatrol: 0
   fieldOfView: {fileID: 2858463060435475622}
   idleToPatrolTime: 5
   animator: {fileID: 0}
   target: {fileID: 7478399793075152179}
+  child: {fileID: 4057006807939650682}
   targetsXs:
   - -1.18
   - 1.15
@@ -321,6 +334,12 @@ MonoBehaviour:
   - -1.76
   - 1.84
   - 0
+  fieldOfViewOneTime: 1
+  startFieldOfView: 0
+  stopToCheckPlayer: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &8571979537818080633
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8571979537818080633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.089, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7804188712605257978}

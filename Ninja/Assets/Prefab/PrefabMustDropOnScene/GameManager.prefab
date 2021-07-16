@@ -44,10 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64866c259acce1147ac10c568e152fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameIsStart: 0
   finishZ: 96
   listOfTeacher:
   - {fileID: 0}
   placeCount: 0
+  playerInput: {fileID: 0}
+  enemysManager:
+  - {fileID: 0}
+  - {fileID: 0}
+  oneTime: 0
 --- !u!114 &1214346938821779520
 MonoBehaviour:
   m_ObjectHideFlags: 0

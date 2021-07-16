@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool moveForward;
     [Header("MoveSpeed")]
     public float moveSpeed;
     public float slowSpeed;
@@ -19,8 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     private PlayerManager playerManager;
     private Animator animator;
-    [Header("Slope")]
-    public float raycastLength;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,20 +34,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (playerManager.canMove && Input.GetMouseButtonDown(0))
+
+        if ( Input.GetMouseButtonDown(0))
         {
             lastCursorPosition = WorldMousePos();
         }
-        else if (playerManager.canMove && Input.GetMouseButton(0))
+        else if ( Input.GetMouseButton(0))
         {
             Vector2 delta = WorldMousePos() - lastCursorPosition;
 
-            MoveHorizontal(delta.x / Screen.width * sensitive * halfRange);
-
+            if (MyScene.Instance.gameIsStart == true)
+            {
+                MoveHorizontal(delta.x / Screen.width * sensitive * halfRange);
+            }
             lastCursorPosition = Input.mousePosition;
         }
         CheckGround();
-
     }
     private void FixedUpdate()
     {

@@ -24,14 +24,15 @@ public class FieldOfView : MonoBehaviour
 
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
-
+	private TeacherAI teacherAI;
 	void Start()
 	{
+		teacherAI = GetComponentInParent<TeacherAI>();
 		viewMesh = new Mesh();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
 
-		StartCoroutine("FindTargetsWithDelay", .2f);
+		//StartCoroutine("FindTargetsWithDelay", .2f);
 	}
 
 
@@ -40,30 +41,35 @@ public class FieldOfView : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(delay);
-			FindVisibleTargets();
+			//FindVisibleTargets();
 		}
 	}
 
 	void LateUpdate()
 	{
-		DrawFieldOfView();
-	}
+        DrawFieldOfView();
+    }
 
     private void Update()
     {
-		EliminatePlayer();
+		FindVisibleTargets();
+        EliminatePlayer();
     }
 
     void FindVisibleTargets()
 	{
 		visibleTargets.Clear();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+		Collider[] targetsInViewRadius = new Collider[0];
 
+		if (Time.frameCount % 2 != 0)
+        {
+			targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+		}
 		for (int i = 0; i < targetsInViewRadius.Length; i++)
 		{
 			Transform target = targetsInViewRadius[i].transform;
 			Vector3 dirToTarget = (target.position - transform.position).normalized;
-			if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2 || Physics.Raycast(teacherAI.child.position, new Vector3(teacherAI.target.position.x, teacherAI.child.position.y, teacherAI.target.position.z) - teacherAI.child.position, viewRadius, targetMask))
 			{
 				float dstToTarget = Vector3.Distance(transform.position, target.position);
 				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
@@ -127,10 +133,10 @@ public class FieldOfView : MonoBehaviour
 
 		viewMesh.Clear();
 
-		viewMesh.vertices = vertices;
-		viewMesh.triangles = triangles;
-		viewMesh.RecalculateNormals();
-	}
+        viewMesh.vertices = vertices;
+        viewMesh.triangles = triangles;
+        viewMesh.RecalculateNormals();
+    }
 
 
 	EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)

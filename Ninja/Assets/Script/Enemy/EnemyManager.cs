@@ -19,11 +19,11 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Component")]
     private Rigidbody rb;
-    //public NavMeshAgent agent;
+    public Animator animator;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         playerManager = GetComponent<PlayerManager>();
         skin1OriginSize = playerManager.skin1.transform.localScale;
         skin2OriginSize = playerManager.skin2.transform.localScale;
@@ -92,4 +92,5 @@ public class EnemyManager : MonoBehaviour
         playerManager.skin1.transform.localScale = skin1OriginSize;
 
     }
+
 }

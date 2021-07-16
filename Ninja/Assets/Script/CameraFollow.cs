@@ -11,18 +11,18 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed;
     public float smoothZSpeed;
     public float smoothXSpeed;
-    public PlayerManager playerManager;
-    public LayerMask groundLayer;
+    //public PlayerManager playerManager;
+    //public LayerMask groundLayer;
 
-    //public Vector3 originRotation;
+    ////public Vector3 originRotation;
 
 
-    private float xTemp;
-    private Vector3 tempPos;
-    public Camera subCam;
-    private float tempVal;
+    //private float xTemp;
+    //private Vector3 tempPos;
+    //public Camera subCam;
+    //private float tempVal;
 
-    public Transform subObj;
+    //public Transform subObj;
 
     private void Start()
     {

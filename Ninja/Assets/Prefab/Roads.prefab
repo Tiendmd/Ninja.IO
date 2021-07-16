@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 8932049880930373239}
   - component: {fileID: 8932049880930373238}
   m_Layer: 10
-  m_Name: Road (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8932049880930373237}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 2.5, y: 1, z: 21}
+  m_LocalPosition: {x: 3, y: 1, z: 21}
   m_LocalScale: {x: 6, y: 0.2, z: 150}
   m_Children: []
   m_Father: {fileID: 8932049879450914394}
@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248397890516548815, guid: df4e910553d510b49ac185266d7b1c79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7248397890516548815, guid: df4e910553d510b49ac185266d7b1c79, type: 3}
       propertyPath: m_LocalPosition.y
