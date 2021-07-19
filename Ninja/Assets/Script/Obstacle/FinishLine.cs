@@ -10,9 +10,6 @@ public class FinishLine : MonoBehaviour
         MyScene.Instance.placeCount++;
         if (other.transform.tag == "Player")
         {
-            other.GetComponentInParent<PlayerManager>().animator.SetTrigger("victory");
-            other.GetComponentInParent<PlayerMovement>().rb.velocity = Vector3.zero;
-            //other.GetComponentInParent<PlayerMovement>().rb.isKinematic = true;
             other.GetComponentInParent<PlayerMovement>().enabled = false;
             other.GetComponentInParent<PlayerInput>().enabled = false;
             Collider[] list = other.GetComponentsInChildren<CapsuleCollider>();
@@ -20,11 +17,10 @@ public class FinishLine : MonoBehaviour
             {
                 Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), list[i]);
             }
-            StartCoroutine(Delay(transform.position - Vector3.right*2.5f, transform.position + Vector3.right * 2.5f));
+            StartCoroutine(DelayParticle(transform.position - Vector3.right*2.5f, transform.position + Vector3.right * 2.5f));
             int a =  MyScene.Instance.placeCount;
             other.GetComponentInParent<PlayerManager>().place = a;
-            GameDataManager.Instance.DoUpdateWhenFinishedRun(a);
-            UIManager.Instance.FinishRun();
+
         }
         else if (other.transform.tag == "Enemy")
         {
@@ -41,7 +37,7 @@ public class FinishLine : MonoBehaviour
         }
     }
 
-    IEnumerator Delay(Vector3 position1, Vector3 position2)
+    IEnumerator DelayParticle(Vector3 position1, Vector3 position2)
     {
         GameObject a = Instantiate(confettiParticle, position1, Quaternion.Euler(-90, 0, 0));
         GameObject b = Instantiate(confettiParticle, position2, Quaternion.Euler(-90, 0, 0));

@@ -290,18 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9e63f70760d04448e0ca6ae1130805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfDesination:
-  - {x: 1.66, y: 0.5, z: -3.04, w: 2}
-  - {x: 0.19, y: 0.5, z: 6.68, w: 1}
-  - {x: 0.16, y: 0.5, z: 17.96, w: 2}
-  - {x: -1.09, y: 0.5, z: 31.88, w: 1}
-  - {x: -2.31, y: 0.5, z: 45.6, w: 4}
-  - {x: -1.61, y: 0.5, z: 72.1, w: 4}
-  - {x: -0.05, y: 0.5, z: 77.6, w: 2}
-  - {x: -0.05, y: 0.5, z: 86.7, w: 3}
-  - {x: -0.39, y: 0.5, z: 96, w: 0}
-  rbSpeed: 4
-  rbSpeedOrigin: 0
+  rbSpeed: 7
+  rbSpeedOrigin: 7
   overrideSetDestination: 0
   jumpForce: 6
   child: {fileID: 727145190}

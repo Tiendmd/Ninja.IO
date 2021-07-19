@@ -6,6 +6,7 @@ public class MyScene : MonoBehaviour
 {
     public static MyScene Instance;
     public bool gameIsStart;
+    public bool gameIsFinish;
     public float finishZ;
     public List<GameObject> listOfTeacher = new List<GameObject>();
     public int placeCount = 0;

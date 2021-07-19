@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+
 
 public class GameDataManager : MonoBehaviour
 {
@@ -9,48 +11,43 @@ public class GameDataManager : MonoBehaviour
 
     private void Awake()
     {
+        gameDataScrObj = Resources.Load("Data") as GameDataScrObj;
         Instance = this;
+
     }
 
-    private void Start()
+    public bool CheckFirstTimePlay()
     {
-        int coin = PlayerPrefs.GetInt("coin");
+        if (PlayerPrefs.HasKey("level"))
+        {
+            return false;
+        }
+        return true;
     }
 
-    public void UpdateLevel()
+    public void SetLevel()
     {
         gameDataScrObj.level++;
     }
 
-    public void UpdateCoin(int a)
+    public void SetCoin(int a)
     {
-        if (a==1)
-        {
-            gameDataScrObj.totalCoin += 700;
-        }
-        else if (a==2)
-        {
-            gameDataScrObj.totalCoin += 500;
-        }
-        else if (a==3)
-        {
-            gameDataScrObj.totalCoin += 300;
-        }
-        else
-        {
-            gameDataScrObj.totalCoin += a;
-        }
-    }
-
-    public void DoUpdateWhenFinishedRun(int coin)
-    {
-        UpdateLevel();
-        UpdateCoin(coin);
+        gameDataScrObj.totalCoin = a;
     }
 
     public void SaveGameData()
     {
-        PlayerPrefs.SetInt("level", gameDataScrObj.level);
-        PlayerPrefs.SetInt("coin", gameDataScrObj.totalCoin);
+        //PlayerPrefs.SetInt("level", gameDataScrObj.level);
+        //PlayerPrefs.SetInt("coin", gameDataScrObj.totalCoin);
     }
+
+    //public int LoadLevelData()
+    //{
+    //    return PlayerPrefs.GetInt("level");
+    //}
+
+    //public int LoadCoinData()
+    //{
+    //    return PlayerPrefs.GetInt("coin");
+    //}
 }

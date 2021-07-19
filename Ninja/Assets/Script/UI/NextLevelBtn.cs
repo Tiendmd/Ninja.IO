@@ -9,7 +9,9 @@ public class NextLevelBtn : MonoBehaviour
      public void NextLevelBtnClick()
     {
         DOTween.KillAll();
-        GameDataManager.Instance.SaveGameData();
+        //GameDataManager.Instance.SaveGameData();
+        GameDataManager.Instance.SetLevel();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

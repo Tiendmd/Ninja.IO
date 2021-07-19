@@ -84,7 +84,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &564572456169107239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,14 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0527d2043ef0034591d689168431a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 7
   slowSpeed: 1
-  originMoveSpeed: 4
+  originMoveSpeed: 7
   jumpForce: 6
   child: {fileID: 564572455089152339}
   layer:
     serializedVersion: 2
     m_Bits: 512
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   rb: {fileID: 0}
   defaultSpeedForward: 3.5
   speedForward: 3.5

@@ -63,7 +63,7 @@ public class FieldOfView : MonoBehaviour
 
 		if (Time.frameCount % 2 != 0)
         {
-			targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+			targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius-0.25f, targetMask);
 		}
 		for (int i = 0; i < targetsInViewRadius.Length; i++)
 		{

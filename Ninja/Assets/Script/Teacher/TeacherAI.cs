@@ -8,9 +8,6 @@ public class TeacherAI : MonoBehaviour
     public float timeLerp;
     public int i = 0;
     public bool allowPatrol;
-    //[Range(0, 360)]
-    //public List<float> angles = new List<float>();
-    //public List<float> angles2 = new List<float>();
     public FieldOfView fieldOfView;
     private bool oneTime = true;
     private bool controlDelayToPatrol = true;
@@ -37,11 +34,11 @@ public class TeacherAI : MonoBehaviour
         fieldOfView.enabled = false;
         fieldOfView.viewRadius = 0;
         fieldOfView.viewAngle = 0;
+        InvokeRepeating("ScanBool", 2, 2);
     }
 
     private void Update()
     {
-        //CheckReachFirstPoint();
         if (startFieldOfView)
         {
             fieldOfView.viewRadius = Mathf.SmoothStep(fieldOfView.viewRadius, fieldOfView.defaultViewRadius, 0.1f);
@@ -100,6 +97,7 @@ public class TeacherAI : MonoBehaviour
         }
     }
 
+    private bool scanBool;
 
     public void CheckReachPatrolPoint()
     {
@@ -111,21 +109,32 @@ public class TeacherAI : MonoBehaviour
                 Patrol();
             }
         }
-        float a = Random.Range(0, 10);
-        RaycastHit hit = new RaycastHit();
-        //if (a<=3 && !stopToCheckPlayer)
-        //{
-        //    stopToCheckPlayer = true;
-        //}
-        if (Physics.Raycast(child.position, new Vector3(target.position.x, child.position.y, target.position.z) - child.position, out hit, fieldOfView.viewRadius, layer)&&stopToCheckPlayer && stopToCheckPlayer)
+
+        if (scanBool)
         {
-            DOTween.Pause(target.transform);
-            fieldOfView.viewAngle = Mathf.SmoothStep(5, fieldOfView.viewAngle, 0.8f);
-            StartCoroutine(DelayFieldOfView());
+            if (Physics.Raycast(child.position, new Vector3(target.position.x, child.position.y, target.position.z) - child.position, fieldOfView.viewRadius - 0.25f, layer) && stopToCheckPlayer && stopToCheckPlayer)
+            {
+                DOTween.Pause(target.transform);
+                fieldOfView.viewAngle = Mathf.SmoothStep(5, fieldOfView.viewAngle, 0.8f);
+                StartCoroutine(DelayFieldOfView());
+            }
         }
         if (!stopToCheckPlayer)
         {
             fieldOfView.viewAngle = Mathf.SmoothStep(fieldOfView.viewAngle, fieldOfView.defaultViewAngle, 0.1f);
+        }
+    }
+
+    public void ScanBool()
+    {
+        float a = Random.Range(0, 10);
+        if (a <= 4)
+        {
+            scanBool = true;
+        }
+        else
+        {
+            scanBool = false;
         }
     }
 
@@ -143,11 +152,6 @@ public class TeacherAI : MonoBehaviour
         }
     }
 
-    //public void LerpFieldOfView(int a, float lerp)
-    //{
-    //    //fieldOfView.viewAngle = Mathf.Lerp(a, fieldOfView.viewAngle, lerp);
-    //    fieldOfView.viewAngle = Mathf.SmoothStep(a, fieldOfView.viewAngle, lerp);
-    //}
 
     public void ReachEndOfList()
     {

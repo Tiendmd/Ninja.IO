@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public GameObject child;
     public LayerMask layer;
+    public LayerMask wallLayer;
     private bool checkJump;
     [Header("Component")]
     public Rigidbody rb;
@@ -69,12 +70,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            //moveForward = false;
             return false;
         }
-        if (playerManager.canMove && Input.GetMouseButton(0))
+        if (playerManager.canMove && Input.GetMouseButton(0) && !Physics.Raycast(child.transform.position, transform.forward, 0.4f, wallLayer))
         {
-            //moveForward = true;
             return true;
         }
         return false;
@@ -89,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         rb.position = new Vector3(Mathf.Clamp(transform.position.x + move, -halfRange, halfRange), rb.position.y, rb.position.z);
     }
 
+   
 
     IEnumerator Delay()
     {
@@ -118,4 +118,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(child.transform.position, transform.forward*0.25f);
+    }
 }
