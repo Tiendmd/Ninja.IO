@@ -2,6 +2,33 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+public class PlayerData : MonoBehaviour
+{
+    [Header("Placement")]
+    public static int place;
+    public static int coinEarn;
+
+    public static void CoinEarnProcess(int a)
+    {
+        if (a == 1)
+        {
+            coinEarn = 700;
+        }
+        else if (a==2)
+        {
+            coinEarn = 500;
+        }
+        else if (a==3)
+        {
+            coinEarn = 300;
+        }
+        else
+        {
+            coinEarn = a;
+        }
+    }
+}
+
 public class PlayerManager : MonoBehaviour
 {
     public bool canMove { get; set; }
@@ -27,8 +54,7 @@ public class PlayerManager : MonoBehaviour
     public Animator animator { get; set; }
     public RigidbodyConstraints constraint1 = RigidbodyConstraints.FreezeRotation;
 
-    [Header("Placement")]
-    public int place;
+
 
     private void Start()
     {

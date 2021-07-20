@@ -20,7 +20,8 @@ public class FinishLine : MonoBehaviour
             }
             StartCoroutine(DelayParticle(transform.position - Vector3.right*2.5f, transform.position + Vector3.right * 2.5f));
             int a =  MyScene.Instance.placeCount;
-            other.GetComponentInParent<PlayerManager>().place = a;
+            PlayerData.place = a;
+            PlayerData.CoinEarnProcess(a);
 
         }
         else if (other.transform.tag == "Enemy")

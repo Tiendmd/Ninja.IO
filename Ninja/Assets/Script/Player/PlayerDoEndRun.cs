@@ -21,7 +21,8 @@ public class PlayerDoEndRun : MonoBehaviour
         Tween a = transform.DOMove(new Vector3(cylinder.position.x, transform.position.y, cylinder.position.z), 2);
         yield return a.WaitForCompletion();
         animator.SetTrigger("victory");
-        UIManager.Instance.FinishRun();
         MyScene.Instance.gameIsFinish = true;
     }
+
+
 }

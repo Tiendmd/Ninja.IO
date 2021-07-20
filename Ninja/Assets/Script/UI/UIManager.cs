@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public GameObject panel;
+
+    public GameObject settingAndExitBackground;
+    public GameObject exitBtn;
     public GameObject settingBtn;
     public GameObject dragTxt;
     public GameObject shopButton;
@@ -18,7 +21,6 @@ public class UIManager : MonoBehaviour
     public GameObject nextLevelBtn;
     public GameObject countDown;
     
-    public GameObject player;
     private void Awake()
     {
         Instance = this;
@@ -42,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
+        settingAndExitBackground.SetActive(false);
         settingBtn.gameObject.SetActive(false);
         shopButton.gameObject.SetActive(false);
         panel.gameObject.SetActive(false);
