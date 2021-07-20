@@ -10,6 +10,9 @@ TagManager:
   - StairUp
   - StairDown
   - StairDown2
+  - TriggerDie
+  - Faster
+  - Slower
   layers:
   - Default
   - TransparentFX

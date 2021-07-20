@@ -12,6 +12,7 @@ public class FinishLine : MonoBehaviour
         {
             other.GetComponentInParent<PlayerMovement>().enabled = false;
             other.GetComponentInParent<PlayerInput>().enabled = false;
+            StartCoroutine(other.GetComponentInParent<PlayerDoEndRun>().PlayerEndRun());
             Collider[] list = other.GetComponentsInChildren<CapsuleCollider>();
             for (int i = 0; i < list.Length; i++)
             {

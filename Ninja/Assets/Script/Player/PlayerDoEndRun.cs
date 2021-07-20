@@ -11,13 +11,14 @@ public class PlayerDoEndRun : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
+
     public IEnumerator PlayerEndRun()
     {
         rb.velocity = Vector3.zero;
         DOTween.KillAll();
-        Tween a = transform.DOMove(cylinder.position, 2);
+        Tween a = transform.DOMove(new Vector3(cylinder.position.x, transform.position.y, cylinder.position.z), 2);
         yield return a.WaitForCompletion();
         animator.SetTrigger("victory");
         UIManager.Instance.FinishRun();

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 564572456169107240}
   - component: {fileID: 564572456169107243}
   - component: {fileID: 878628593}
+  - component: {fileID: 1896412969}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -159,11 +160,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564572456169107241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33fba39c062e1454395ad0e8d641a3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1896412969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564572456169107241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a305d31b833b28149bc0da697dc0819f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cylinder: {fileID: 0}
 --- !u!1 &564572456264678601
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +800,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -2750582448059301601, guid: 65f9c4bdde36c3147bf479c533025634, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2084811680363313996, guid: 65f9c4bdde36c3147bf479c533025634, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -869,6 +887,10 @@ PrefabInstance:
     - target: {fileID: 6086471936633425818, guid: 65f9c4bdde36c3147bf479c533025634, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829150156303868160, guid: 65f9c4bdde36c3147bf479c533025634, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -0.44
       objectReference: {fileID: 0}
     - target: {fileID: 8817898888258712963, guid: 65f9c4bdde36c3147bf479c533025634, type: 3}
       propertyPath: m_Layer

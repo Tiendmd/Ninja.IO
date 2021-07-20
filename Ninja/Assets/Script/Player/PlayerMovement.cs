@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (MoveForward())
             {
-                rb.velocity = new Vector3(0, rb.velocity.y, 1 * moveSpeed);
+                rb.velocity = new Vector3(0, rb.velocity.y, Mathf.Clamp(1 * moveSpeed, 0, moveSpeed));
             }
             if (!MoveForward())
             {
@@ -101,6 +101,14 @@ public class PlayerMovement : MonoBehaviour
     {
         playerManager.jumping = true;
         rb.AddForce(new Vector3(rb.velocity.x, 1 * jumpForce, rb.velocity.z), ForceMode.Impulse);
+        animator.SetBool("jump", true);
+        StartCoroutine(Delay());
+    }
+
+    public void SuperJump()
+    {
+        playerManager.jumping = true;
+        rb.AddForce(new Vector3(rb.velocity.x, 2.5f * jumpForce, rb.velocity.z), ForceMode.Impulse);
         animator.SetBool("jump", true);
         StartCoroutine(Delay());
     }

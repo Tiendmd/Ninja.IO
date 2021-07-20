@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetPositionToCheckPoint()
     {
+        StartCoroutine(playerInput.Skin2ToSkin1());
         StartCoroutine(Delay(timeBetweenResurrect, "die"));
     }
 

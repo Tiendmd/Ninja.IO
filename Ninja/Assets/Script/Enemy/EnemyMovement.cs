@@ -290,6 +290,13 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(DelayJump());
     }
 
+    public void SuperJump()
+    {
+        rb.AddForce(new Vector3(rb.velocity.x, 2.5f * jumpForce, 3.55f), ForceMode.Impulse);
+        animator.SetBool("jump", true);
+        StartCoroutine(DelayJump());
+    }
+
     public void CheckGround()
     {
         if (Physics.Raycast(child.transform.position, Vector3.down, 0.05f, layer))

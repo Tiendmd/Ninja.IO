@@ -58,7 +58,7 @@ public class PlayerInput : MonoBehaviour
     {
         playerManager.canMove = false;
         playerManager.isSkin1 = false;
-        playerManager.skin1.transform.DOScale(Vector3.zero, scaleTime);
+        //playerManager.skin1.transform.DOScale(Vector3.zero, scaleTime);
         playerManager.skin2.GetComponent<CapsuleCollider>().enabled = true;
         playerManager.skin2.GetComponent<MeshRenderer>().enabled = true;
         playerManager.skin1.GetComponent<CapsuleCollider>().enabled = false;
@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour
     {
         playerManager.canMove = true;
         playerManager.isSkin2 = false;
-        playerManager.skin2.transform.DOScale(Vector3.zero, scaleTime);
+        //playerManager.skin2.transform.DOScale(Vector3.zero, scaleTime);
         playerManager.skin1.GetComponent<CapsuleCollider>().enabled = true;
         playerManager.skin1.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         playerManager.skin2.GetComponent<CapsuleCollider>().enabled = false;
