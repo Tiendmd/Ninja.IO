@@ -11,20 +11,15 @@ public class EnemyMovement : MonoBehaviour
     public float rbSpeed;
     public float rbSpeedOrigin;
     public Animator animator { get; set; }
-
-    public bool overrideSetDestination;
     private bool oneTime = true;
 
     public float jumpForce;
     public GameObject child;
     public LayerMask layer;
     private bool checkJump;
-    public bool pressing;
 
     [Header("Slide")]
     public float slideForce;
-    public bool slideRight;
-    public bool slideLeft;
     [Header("CheckForward")]
     public LayerMask obstacleLayer;
     public LayerMask wallLayer;
@@ -39,14 +34,11 @@ public class EnemyMovement : MonoBehaviour
     private float desiredX;
     private void Start()
     {
-        overrideSetDestination = false;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         Y2Rotation = -Y1Rotation;
         rbSpeedOrigin = rbSpeed;
         rayCastOn = true;
-        slideLeft = false;
-        slideRight = false;
     }   
 
     private void Update()
@@ -211,8 +203,7 @@ public class EnemyMovement : MonoBehaviour
                 }
                 else
                 {
-                    if (FrameCount(30))
-                    {
+
                         if (RayCastLeft())
                         {
                             transform.DOMoveX(transform.position.x + 1.5f, 2);
@@ -221,8 +212,7 @@ public class EnemyMovement : MonoBehaviour
                         {
                             transform.DOMoveX(transform.position.x - 1.5f, 2);
                         }
-                    }
-
+                    
                 }
 
             }

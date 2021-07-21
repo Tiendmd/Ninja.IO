@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5691774927321851370}
   - component: {fileID: 5835957893943230996}
   - component: {fileID: 6100628687911674997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle-2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3884721656214528815}
   - component: {fileID: 3631014824022649368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Swing-Mace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 8061325259053488369}
   - component: {fileID: 3585482855290529226}
   - component: {fileID: 8128473002957760746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle-2.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}

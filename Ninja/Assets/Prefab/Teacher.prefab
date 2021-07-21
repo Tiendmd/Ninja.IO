@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b47179b4b3b20c4f8ab64b405730dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 2858463060611978665}
   view1: 0
   view2: 1
   viewRadius: 15
@@ -331,8 +332,6 @@ MonoBehaviour:
   - -1.18
   - 1.15
   - 0.41
-  - -1.76
-  - 1.84
   - 0
   fieldOfViewOneTime: 1
   startFieldOfView: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class FieldOfView : MonoBehaviour
 {
+	public Transform parent;
 	public bool view1;
 	public bool view2;
 	public float viewRadius;
@@ -31,28 +32,27 @@ public class FieldOfView : MonoBehaviour
 		viewMesh = new Mesh();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
+        //StartCoroutine("FindTargetsWithDelay", .2f);
+    }
 
-		//StartCoroutine("FindTargetsWithDelay", .2f);
-	}
 
-
-	IEnumerator FindTargetsWithDelay(float delay)
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(delay);
-			//FindVisibleTargets();
-		}
-	}
+	//IEnumerator FindTargetsWithDelay(float delay)
+	//{
+	//	while (true)
+	//	{
+	//		yield return new WaitForSeconds(delay);
+ //           FindVisibleTargets();
+ //       }
+	//}
 
 	void LateUpdate()
 	{
         DrawFieldOfView();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-		FindVisibleTargets();
+        FindVisibleTargets();
         EliminatePlayer();
     }
 
@@ -68,13 +68,13 @@ public class FieldOfView : MonoBehaviour
 		for (int i = 0; i < targetsInViewRadius.Length; i++)
 		{
 			Transform target = targetsInViewRadius[i].transform;
-			Vector3 dirToTarget = (target.position - transform.position).normalized;
+			Vector3 dirToTarget = (target.position - parent.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2 || Physics.Raycast(teacherAI.child.position, new Vector3(teacherAI.target.position.x, teacherAI.child.position.y, teacherAI.target.position.z) - teacherAI.child.position, viewRadius, targetMask))
 			{
 				float dstToTarget = Vector3.Distance(transform.position, target.position);
 				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
 				{
-					visibleTargets.Add(target);
+                    visibleTargets.Add(target);
 				}
 			}
 		}
@@ -226,14 +226,13 @@ public class FieldOfView : MonoBehaviour
         {
             if (visibleTargets[i].transform.tag == "Player")
             {
-				visibleTargets[i].GetComponentInParent<PlayerManager>().ResetPositionToCheckPoint();
+				StartCoroutine(visibleTargets[i].GetComponentInParent<PlayerManager>().AngryResetToCheckPoint());
 				visibleTargets.RemoveAt(i);
 			}
             else if (visibleTargets[i].transform.tag == "Enemy")
             {
-				visibleTargets[i].GetComponentInParent<PlayerManager>().ResetEnemyToCheckPoint();
+				StartCoroutine(visibleTargets[i].GetComponentInParent<PlayerManager>().EnemyAngryResetToCheckPoint());
 				visibleTargets.RemoveAt(i);
-
 			}
 		}
     }

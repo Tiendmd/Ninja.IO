@@ -18,18 +18,19 @@ public class FinishLine : MonoBehaviour
             {
                 Physics.IgnoreCollision(transform.GetComponent<BoxCollider>(), list[i]);
             }
-            StartCoroutine(DelayParticle(transform.position - Vector3.right*2.5f, transform.position + Vector3.right * 2.5f));
+            StartCoroutine(DelayParticle(transform.position - Vector3.right * 2.5f, transform.position + Vector3.right * 2.5f));
             int a =  MyScene.Instance.placeCount;
-            PlayerData.place = a;
-            PlayerData.CoinEarnProcess(a);
+            PlayerData.Instance.place = a;
+            PlayerData.Instance.CoinEarnProcess(a);
 
         }
         else if (other.transform.tag == "Enemy")
         {
             other.GetComponentInParent<EnemyMovement>().rb.velocity = Vector3.zero;
             other.GetComponentInParent<EnemyMovement>().rb.isKinematic = true;
-            other.GetComponentInParent<EnemyMovement>().animator.SetTrigger("victory");
-            //other.GetComponentInParent<EnemyMovement>().EnemyDoDemand();
+            //other.GetComponentInParent<EnemyMovement>().animator.SetTrigger("victory");
+            StartCoroutine(other.GetComponent<EnemyManager>().StartParticleSystem());
+            Destroy(other.gameObject);
             other.GetComponentInParent<EnemyMovement>().enabled = false;
             Collider[] list = other.GetComponentsInChildren<CapsuleCollider>();
             for (int i = 0; i < list.Length; i++)

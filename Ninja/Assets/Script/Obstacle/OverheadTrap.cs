@@ -7,21 +7,16 @@ public class OverheadTrap : MonoBehaviour
 {
     private float defaultY;
     public float delay;
+
+
     private void Start()
     {
+        Sequence sequence = DOTween.Sequence();
         defaultY = transform.position.y;
-        StartCoroutine(Repeat());
+        sequence.Append(transform.DOMoveY(0.5f, 0.25f).SetEase(Ease.Linear)).Append(transform.DOMoveY(defaultY, 2).SetEase(Ease.Linear))
+            .Append(transform.DOMove(transform.position, 3)).SetLoops(-1, LoopType.Restart);
     }
 
-    IEnumerator Repeat()
-    {
-        Tween a = transform.DOMoveY(0.5f, 0.25f).SetEase(Ease.Linear);
-        yield return a.WaitForCompletion();
-        Tween b = transform.DOMoveY(defaultY, 2).SetEase(Ease.Linear);
-        yield return b.WaitForCompletion();
-        yield return new WaitForSeconds(delay);
-        StartCoroutine(Repeat());
-    }
 
     private void OnTriggerEnter(Collider other)
     {

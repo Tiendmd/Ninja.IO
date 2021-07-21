@@ -11,16 +11,19 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public GameObject panel;
-
-    public GameObject settingAndExitBackground;
     public GameObject exitBtn;
     public GameObject settingBtn;
     public GameObject dragTxt;
     public GameObject shopButton;
     public GameObject coinGroup;
-    public GameObject nextLevelBtn;
     public GameObject countDown;
-    
+
+    [Header("Finished")]
+    public RectTransform nextLevelBtn;
+    public GameObject backGrounds;
+    public Transform adsBtn;
+    public RectTransform levelCompleteTxt;
+    public RectTransform levelCompleteImg;
     private void Awake()
     {
         Instance = this;
@@ -33,19 +36,32 @@ public class UIManager : MonoBehaviour
         shopButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
         coinGroup.gameObject.SetActive(true);
-        nextLevelBtn.SetActive(false);
+        nextLevelBtn.gameObject.SetActive(false);
+        StartMenu();
+    }
 
+    public void StartMenu()
+    {
+        shopButton.GetComponent<RectTransform>().DOAnchorPosX(-90, 0.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        Sequence a = DOTween.Sequence();
+        a.Append(dragTxt.GetComponentInChildren<TMP_Text>().DOFade(1, 1))
+            .Append(dragTxt.GetComponentInChildren<TMP_Text>().DOFade(1, 0.5f))
+            .Append(dragTxt.GetComponentInChildren<TMP_Text>().DOFade(0, 1)).SetLoops(-1, LoopType.Yoyo);        
+        Sequence b = DOTween.Sequence();
+        b.Append(dragTxt.GetComponentInChildren<Image>().DOFade(1, 1))
+            .Append(dragTxt.GetComponentInChildren<Image>().DOFade(1, 0.5f))
+            .Append(dragTxt.GetComponentInChildren<Image>().DOFade(0, 1)).SetLoops(-1, LoopType.Yoyo);
     }
     public void ShopBtnClick()
     {
-        shopButton.gameObject.SetActive(false);
-        panel.gameObject.SetActive(false);
+        //shopButton.gameObject.SetActive(false);
+        //panel.gameObject.SetActive(false);
     }
 
     public void StartGame()
     {
-        settingAndExitBackground.SetActive(false);
         settingBtn.gameObject.SetActive(false);
+        exitBtn.gameObject.SetActive(false);
         shopButton.gameObject.SetActive(false);
         panel.gameObject.SetActive(false);
         coinGroup.gameObject.SetActive(false);
@@ -53,9 +69,27 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CountDown());
     }
 
-    public void FinishRun()
+    public IEnumerator LevelComplete()
     {
-        nextLevelBtn.SetActive(true);
+        backGrounds.SetActive(true);
+        Tween a = levelCompleteImg.DOAnchorPosX(0, 0.5f, true).SetEase(Ease.Linear);
+        yield return a.WaitForCompletion();
+        Tween b = levelCompleteTxt.DOAnchorPosY(15, 1, true).SetEase(Ease.OutBounce);
+        yield return b.WaitForCompletion();
+        yield return new WaitForSeconds(0.25f);
+        SetNextLevelTxt();
+        adsBtn.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        adsBtn.DOScale(new Vector3(7, 11, 0), 0.75f).SetEase(Ease.OutCubic).SetLoops(-1, LoopType.Yoyo);
+        yield return new WaitForSeconds(3);
+        nextLevelBtn.gameObject.SetActive(true);
+        Tween d = nextLevelBtn.GetComponentInChildren<Text>().DOFade(1, 1).SetEase(Ease.Linear);
+    }
+
+    public void SetNextLevelTxt()
+    {
+        adsBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarn * 5 + "";
+        nextLevelBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarn + " is enough !";
     }
 
     public IEnumerator CountDown()

@@ -7,8 +7,6 @@ using DG.Tweening;
 public class EnemyManager : MonoBehaviour
 {
     public float scaleTime = 0.15f;
-    public bool isStupid;
-    public bool isSmart;
     public float percentToSmart;
     public float percentToStupid;
     public float timeBetweenInvoke;
@@ -16,13 +14,9 @@ public class EnemyManager : MonoBehaviour
     private PlayerManager playerManager;
     private Vector3 skin1OriginSize;
     private Vector3 skin2OriginSize;
-
-    [Header("Component")]
-    private Rigidbody rb;
-    public Animator animator;
+    public Animator animator { get; set; }
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         playerManager = GetComponent<PlayerManager>();
         skin1OriginSize = playerManager.skin1.transform.localScale;
@@ -41,8 +35,6 @@ public class EnemyManager : MonoBehaviour
             int a = Random.Range(0, 100);
             if (a < percentToSmart)
             {
-                isSmart = true;
-                isStupid = false;
             }
         }
         else if (Mathf.Abs(MyScene.Instance.finishZ - transform.position.z) < Mathf.Abs(MyScene.Instance.finishZ - player.position.z))
@@ -50,8 +42,6 @@ public class EnemyManager : MonoBehaviour
             int a = Random.Range(0, 100);
             if (a > percentToSmart && a < percentToStupid)
             {
-                isSmart = false;
-                isStupid = true;
             }
         }
     }

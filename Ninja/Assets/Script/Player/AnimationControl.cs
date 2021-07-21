@@ -6,6 +6,6 @@ public class AnimationControl : MonoBehaviour
 {
     public void NextLevel()
     {
-        UIManager.Instance.FinishRun();
+        StartCoroutine(UIManager.Instance.LevelComplete());
     }
 }

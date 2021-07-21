@@ -51,7 +51,9 @@ MonoBehaviour:
   - {fileID: 0}
   placeCount: 0
   playerInput: {fileID: 0}
-  enemysManager: []
+  enemysManager:
+  - {fileID: 0}
+  - {fileID: 0}
   oneTime: 0
 --- !u!114 &1214346938821779520
 MonoBehaviour:

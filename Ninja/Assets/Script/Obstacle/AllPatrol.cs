@@ -11,14 +11,6 @@ public class AllPatrol : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Patrol());
-    }
-    public IEnumerator Patrol()
-    {
-        Tween a = transform.DOMoveX(X1, patrolTime).SetEase(Ease.Linear);
-        yield return a.WaitForCompletion();
-        Tween b = transform.DOMoveX(X2, patrolTime).SetEase(Ease.Linear);
-        yield return b.WaitForCompletion();
-        StartCoroutine(Patrol());
+        Tween a = transform.DOMoveX(X1, patrolTime).SetEase(Ease.Linear).SetLoops(-1,LoopType.Yoyo);
     }
 }

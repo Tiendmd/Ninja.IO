@@ -2,48 +2,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerData : MonoBehaviour
-{
-    [Header("Placement")]
-    public static int place;
-    public static int coinEarn;
 
-    public static void CoinEarnProcess(int a)
-    {
-        if (a == 1)
-        {
-            coinEarn = 700;
-        }
-        else if (a==2)
-        {
-            coinEarn = 500;
-        }
-        else if (a==3)
-        {
-            coinEarn = 300;
-        }
-        else
-        {
-            coinEarn = a;
-        }
-    }
-}
 
 public class PlayerManager : MonoBehaviour
 {
     public bool canMove { get; set; }
-    public bool canSlide;
-    public bool jumping;
+    public bool canSlide { get; set; }
+    public bool jumping { get; set; }
     public GameObject skin1;
     public GameObject skin2;
     public GameObject particle;
     public CameraFollow myCamera;
-    public bool isSkin1;
-    public bool isSkin2;
+    public bool isSkin1 { get; set; }
+    public bool isSkin2 { get; set; }
     //private NavMeshAgent agent;
     public float timeBetweenResurrect = 2;
 
-    public Vector3 checkPointPosition;
+    public Vector3 checkPointPosition { get; set; }
     public bool playerIsDead = true;
 
     public bool enemyIsDead = true;
@@ -66,6 +41,18 @@ public class PlayerManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         //checkPointPosition = new Vector3(0, transform.position.y, 0);
+    }
+
+    private void Update()
+    {
+    }
+
+    public IEnumerator AngryResetToCheckPoint()
+    {
+        StartCoroutine(playerInput.Skin2ToSkin1());
+        StartCoroutine(Delay(timeBetweenResurrect, "angry"));
+        yield return new WaitForSeconds(timeBetweenResurrect-0.5f);
+        StartCoroutine(playerInput.StartParticleSystem());
     }
 
     public void ResetPositionToCheckPoint()
@@ -97,6 +84,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (playerIsDead)
         {
+            gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
             playerIsDead = false;
             canMove = false;
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
@@ -107,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             myCamera.player = null;
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
             yield return new WaitForSeconds(delay);
+            gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Player");
             animator.SetTrigger("idle");
             rb.velocity = new Vector3(0, 0, 0);
             transform.GetComponent<PlayerInput>().enabled = true;
@@ -137,6 +126,8 @@ public class PlayerManager : MonoBehaviour
         if (enemyIsDead)
         {
             enemyIsDead = false;
+            gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
+
             StopCoroutine(GetComponent<EnemyMovement>().DelayJump());
             rb.velocity = Vector3.zero;
             transform.GetComponent<EnemyMovement>().enabled = false;
@@ -145,6 +136,8 @@ public class PlayerManager : MonoBehaviour
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
             // sau delay giay thi sinh ra cho moi
             yield return new WaitForSeconds(delay);
+            gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Enemy");
+
             rb.velocity = new Vector3(0, 0, 0);
 
             for (int i = 0; i < b.Length; i++)
@@ -167,6 +160,14 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public IEnumerator EnemyAngryResetToCheckPoint()
+    {
+        StartCoroutine(enemyManager.EnemySkin2ToSkin1());
+        StartCoroutine(Delay(timeBetweenResurrect, "angry"));
+        yield return new WaitForSeconds(timeBetweenResurrect - 0.5f);
+        StartCoroutine(playerInput.StartParticleSystem());
+    }
+
     public void EnemyKick(Vector3 kickDirection)
     {
         //rb.velocity = Vector3.zero;
@@ -177,6 +178,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetEnemyToCheckPoint()
     {
+        StartCoroutine(enemyManager.EnemySkin2ToSkin1());
         StartCoroutine(EnemyDelay(timeBetweenResurrect, "die"));
     }
 

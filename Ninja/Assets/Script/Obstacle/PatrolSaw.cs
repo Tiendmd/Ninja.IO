@@ -14,22 +14,14 @@ public class PatrolSaw : MonoBehaviour
     private void Start()
     {
         X2 = -X1;
-        StartCoroutine(Patrol());
+        transform.DOMoveX(X1, patrolTime).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
 
     }
     public void FixedUpdate()
     {
         a -= Time.deltaTime*speedSaw;
         transform.localRotation = Quaternion.Euler(a, transform.localRotation.y, transform.localRotation.z);
-    }
 
-    IEnumerator Patrol()
-    {
-        Tween a = transform.DOMoveX(X1, patrolTime).SetEase(Ease.Linear);
-        yield return a.WaitForCompletion();
-        Tween b = transform.DOMoveX(X2, patrolTime).SetEase(Ease.Linear);
-        yield return b.WaitForCompletion();
-        StartCoroutine(Patrol());
     }
 
     private void OnTriggerEnter(Collider other)

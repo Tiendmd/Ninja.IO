@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3481608586916060852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004026026978349442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9b4e3d75600534ba155939c8b77c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  X1: -2
+  X2: 2
+  patrolTime: 2
+--- !u!114 &3481608586916060853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004026026978349442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1f7ec6c4d872b4ea69d7cd4c6904b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrel: {fileID: 8006600478672101805, guid: 55bee225c69d53344a920b8f3c52df1c, type: 3}
+  instancePosition: {fileID: 4591870144096847917}
+  a: 1.5
 --- !u!1 &3481608586267967190
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,36 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptMove: {fileID: 3481608586916060852}
   scriptInstance: {fileID: 3481608586916060853}
---- !u!114 &3481608586916060852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3004026026978349442}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9b4e3d75600534ba155939c8b77c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  X1: -2
-  X2: 2
-  patrolTime: 2
---- !u!114 &3481608586916060853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3004026026978349442}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1f7ec6c4d872b4ea69d7cd4c6904b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrel: {fileID: 8006600478672101805, guid: 55bee225c69d53344a920b8f3c52df1c, type: 3}
-  instancePosition: {fileID: 4591870144096847917}
-  a: 1.5
 --- !u!1 &3481608587492956308
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
       propertyPath: m_LocalPosition.y

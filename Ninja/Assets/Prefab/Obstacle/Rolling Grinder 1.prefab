@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1371853081}
   - component: {fileID: 1371853082}
   - component: {fileID: 1371853083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620694885264949111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rolling Grinder 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

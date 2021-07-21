@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class NextLevelBtn : MonoBehaviour
 {
-    private TMP_Text nextLevelTMP;
+    private Text nextLevelTMP;
 
     private void Start()
     {
-        nextLevelTMP = GetComponentInChildren<TMP_Text>();
+        nextLevelTMP = GetComponentInChildren<Text>();
     }
 
     public void NextLevelBtnClick()
@@ -19,10 +20,5 @@ public class NextLevelBtn : MonoBehaviour
         DOTween.KillAll();
         GameDataManager.Instance.SetLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void UpdateTMPText()
-    {
-        //nextLevelTMP.SetText()
     }
 }

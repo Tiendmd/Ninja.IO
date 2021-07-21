@@ -6,22 +6,22 @@ using DG.Tweening;
 public class TeacherAI : MonoBehaviour
 {
     public float timeLerp;
-    public int i = 0;
-    public bool allowPatrol;
+    private int i = 0;
+    private bool allowPatrol;
     public FieldOfView fieldOfView;
     private bool oneTime = true;
     private bool controlDelayToPatrol = true;
 
     public float idleToPatrolTime = 5f;
-    public Animator animator;
+    private Animator animator;
     public Transform target;
     private Vector3 defaultTargetPosition;
     public Transform child;
     [Range(-2.5f, 2.5f)]
     public List<float> targetsXs = new List<float>();
-    public bool fieldOfViewOneTime = true;
-    public bool startFieldOfView = false;
-    public bool stopToCheckPlayer;
+    private bool fieldOfViewOneTime = true;
+    private bool startFieldOfView = false;
+    private bool stopToCheckPlayer;
     public LayerMask layer;
 
     private void Start()
