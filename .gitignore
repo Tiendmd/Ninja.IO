@@ -7,7 +7,7 @@
 /Ninja/[Oo]bj/
 /Ninja/[Bb]uild/
 /Ninja/[Bb]uilds/
-/Ninja/[Ll]ogs/
+**/Ninja/[Ll]ogs/
 /Ninja/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.

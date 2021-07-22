@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1575583484213890049}
   - component: {fileID: 6744451012724420700}
   - component: {fileID: 1951290085457015321}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &6744451012724420700
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4780114609128831064}
   - component: {fileID: 8803649890578643865}
   - component: {fileID: 8608862149452259724}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8803649890578643865
@@ -274,7 +274,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126762031920381564}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.40852594, y: 0.5, z: 84.04239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 1113049196208169383}
   - component: {fileID: 1124726033748633919}
   - component: {fileID: 4797892816585200500}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1124726033748633919
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 4700659954627545043}
   - component: {fileID: 6433164862668419215}
   - component: {fileID: 1564818111414272178}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &6433164862668419215
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 1991662427863009331}
   - component: {fileID: 3412673398305429165}
   - component: {fileID: 7908036635111732543}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +655,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3412673398305429165
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 7251695120841205694}
   - component: {fileID: 8958056297380246871}
   - component: {fileID: 7386102497471053807}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8958056297380246871
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 8239047140289886265}
   - component: {fileID: 6349728726537918982}
   - component: {fileID: 2935349886922386677}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &6349728726537918982
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 7644200162607205032}
   - component: {fileID: 4926910936907481876}
   - component: {fileID: 7905356748308334016}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1030,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4926910936907481876
@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 4697653968328679467}
   - component: {fileID: 8588050694976454862}
   - component: {fileID: 4701310007796348607}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8588050694976454862
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 3110118701866527342}
   - component: {fileID: 5480365242218663679}
   - component: {fileID: 3205465325520652417}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1280,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5480365242218663679
@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 4872597850041335865}
   - component: {fileID: 5547868305484625886}
   - component: {fileID: 5560450803720764191}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1405,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5547868305484625886
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 4417316546970823599}
   - component: {fileID: 5273081308676683187}
   - component: {fileID: 8491702735417946210}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1530,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5273081308676683187
@@ -1572,7 +1572,7 @@ GameObject:
   - component: {fileID: 1327312770614953755}
   - component: {fileID: 8359338719714782193}
   - component: {fileID: 8006930474621003519}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1655,7 +1655,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8359338719714782193
@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 8381805280271117183}
   - component: {fileID: 8370233093917273262}
   - component: {fileID: 3433092300861655962}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Brick1(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8370233093917273262

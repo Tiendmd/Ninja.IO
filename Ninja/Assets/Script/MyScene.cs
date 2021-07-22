@@ -14,7 +14,7 @@ public class MyScene : MonoBehaviour
 
     public PlayerInput playerInput;
     public List<EnemyManager> enemysManager = new List<EnemyManager>();
-    public bool oneTime = false;
+    public bool oneTime { get; set; }
     private void Awake()
     {
         Instance = this;
@@ -25,6 +25,14 @@ public class MyScene : MonoBehaviour
         if (oneTime)
         {
             StartCoroutine(Delay());
+        }
+    }
+
+    public void StartVibrate()
+    {
+        if (GameDataManager.Instance.gameDataScrObj.vibrateOn)
+        {
+            Handheld.Vibrate();
         }
     }
 

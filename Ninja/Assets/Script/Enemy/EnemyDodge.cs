@@ -54,7 +54,7 @@ public class EnemyDodge : MonoBehaviour
                     transform.GetComponent<EnemyMovement>().enabled = false;
                     //transform.GetComponent<NavMeshAgent>().enabled = false;
                     StartCoroutine(enemyManager.EnemySkin1ToSkin2());
-                    StartCoroutine(enemyManager.StartParticleSystem());
+                    enemyManager.StartParticleSystem();
                 }
             }
             else if (enemyMovement.intelligent > 5)
@@ -64,7 +64,7 @@ public class EnemyDodge : MonoBehaviour
                 transform.GetComponent<EnemyMovement>().enabled = false;
                 //transform.GetComponent<NavMeshAgent>().enabled = false;
                 StartCoroutine(enemyManager.EnemySkin1ToSkin2());
-                StartCoroutine(enemyManager.StartParticleSystem());
+                enemyManager.StartParticleSystem();
             }
             oneTime = false;
         }

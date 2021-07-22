@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private bool isPushed;
     public Rigidbody rb { get; set; }
     public float rbSpeed;
     public float rbSpeedOrigin;
@@ -43,18 +44,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (MyScene.Instance.gameIsStart)
+        if (MyScene.Instance.gameIsStart && !isPushed)
         {
             RayCastCheck();
             RayCastOnOff();
             CheckGround();
-
         }
     }
 
     private void FixedUpdate()
     {
-        if (MyScene.Instance.gameIsStart)
+        if (MyScene.Instance.gameIsStart && !isPushed)
         {
             if (oneTime)
             {
@@ -285,6 +285,17 @@ public class EnemyMovement : MonoBehaviour
         rb.AddForce(new Vector3(rb.velocity.x, 2.5f * jumpForce, 3.55f), ForceMode.Impulse);
         animator.SetBool("jump", true);
         StartCoroutine(DelayJump());
+    }
+
+    public IEnumerator PushBack(Vector3 dir)
+    {
+        rb.velocity = Vector3.zero;
+        animator.SetBool("stun", true);
+        isPushed = true;
+        rb.AddForce(dir, ForceMode.Impulse);
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("stun", false);
+        isPushed = false;
     }
 
     public void CheckGround()

@@ -46,11 +46,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public IEnumerator StartParticleSystem()
+    public void StartParticleSystem()
     {
-        GameObject temp = Instantiate(playerManager.particle, transform.position, Quaternion.Euler(-90, 0, 0));
-        yield return new WaitForSeconds(playerManager.particle.GetComponent<ParticleSystem>().main.duration + 1);
-        Destroy(temp);
+        Instantiate(playerManager.particle, transform.position, Quaternion.Euler(-90, 0, 0));
     }
 
     public IEnumerator EnemySkin1ToSkin2()

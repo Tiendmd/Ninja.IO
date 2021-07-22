@@ -10,13 +10,20 @@ public class FasterSlower : MonoBehaviour
     {
         if (transform.CompareTag("Faster"))
         {
-            Rigidbody rb = other.transform.GetComponentInParent<Rigidbody>();
-            rb.AddForce(Vector3.forward * force, ForceMode.VelocityChange);
+            if (other.transform.CompareTag("Player")|| other.transform.CompareTag("Enemy"))
+            {
+                Rigidbody rb = other.transform.GetComponentInParent<Rigidbody>();
+                rb.AddForce(Vector3.forward * force, ForceMode.VelocityChange);
+            }
+
         }
         else if (transform.CompareTag("Slower"))
         {
-            Rigidbody rb = other.transform.GetComponentInParent<Rigidbody>();
-            rb.AddForce(-Vector3.forward * force, ForceMode.VelocityChange);
+            if (other.transform.CompareTag("Player") || other.transform.CompareTag("Enemy"))
+            {
+                Rigidbody rb = other.transform.GetComponentInParent<Rigidbody>();
+                rb.AddForce(-Vector3.forward * force, ForceMode.VelocityChange);
+            }
         }
     }
 }

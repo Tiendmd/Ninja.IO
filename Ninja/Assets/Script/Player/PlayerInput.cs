@@ -43,15 +43,13 @@ public class PlayerInput : MonoBehaviour
         {
             checkAnimationRun = true;
             StartCoroutine(Skin1ToSkin2());
-            StartCoroutine(StartParticleSystem());
+            StartParticleSystem();
         }
     }
 
-    public IEnumerator StartParticleSystem()
+    public void StartParticleSystem()
     {
-        GameObject temp = Instantiate(playerManager.particle, transform.position, Quaternion.Euler(-90, 0, 0));
-        yield return new WaitForSeconds(playerManager.particle.GetComponent<ParticleSystem>().main.duration+1);
-        Destroy(temp);
+        Instantiate(playerManager.particle, transform.position, Quaternion.Euler(-90, 0, 0));
     }
 
     public IEnumerator Skin1ToSkin2()

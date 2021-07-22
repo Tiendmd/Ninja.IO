@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(playerInput.Skin2ToSkin1());
         StartCoroutine(Delay(timeBetweenResurrect, "angry"));
         yield return new WaitForSeconds(timeBetweenResurrect-0.5f);
-        StartCoroutine(playerInput.StartParticleSystem());
+        playerInput.StartParticleSystem();
     }
 
     public void ResetPositionToCheckPoint()
@@ -95,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             myCamera.player = null;
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
             yield return new WaitForSeconds(delay);
+            playerInput.StartParticleSystem();
             gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Player");
             animator.SetTrigger("idle");
             rb.velocity = new Vector3(0, 0, 0);
@@ -136,6 +137,7 @@ public class PlayerManager : MonoBehaviour
             Collider[] b = transform.GetComponentsInChildren<CapsuleCollider>();
             // sau delay giay thi sinh ra cho moi
             yield return new WaitForSeconds(delay);
+            enemyManager.StartParticleSystem();
             gameObject.transform.GetChild(0).gameObject.layer = LayerMask.NameToLayer("Enemy");
 
             rb.velocity = new Vector3(0, 0, 0);
@@ -165,7 +167,7 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(enemyManager.EnemySkin2ToSkin1());
         StartCoroutine(Delay(timeBetweenResurrect, "angry"));
         yield return new WaitForSeconds(timeBetweenResurrect - 0.5f);
-        StartCoroutine(playerInput.StartParticleSystem());
+        playerInput.StartParticleSystem();
     }
 
     public void EnemyKick(Vector3 kickDirection)

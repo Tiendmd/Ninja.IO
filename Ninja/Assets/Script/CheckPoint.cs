@@ -14,7 +14,7 @@ public class CheckPoint : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             other.GetComponentInParent<PlayerManager>().checkPointPosition = new Vector3(other.transform.position.x, 0.5f, transform.position.z);
-            StartCoroutine(Delay(flags[0].position, flags[1].position));
+            Delay(flags[0].position, flags[1].position);
             for (int i = 0; i < flags.Count; i++)
             {
                 float tempRotationY = flags[i].transform.localRotation.eulerAngles.y;
@@ -41,14 +41,10 @@ public class CheckPoint : MonoBehaviour
     }
 
 
-    IEnumerator Delay(Vector3 position1, Vector3 position2)
+    void Delay(Vector3 position1, Vector3 position2)
     {
-        GameObject a = Instantiate(confettiParticle, position1, Quaternion.Euler(-90, 0, 0));
-        GameObject b = Instantiate(confettiParticle, position2, Quaternion.Euler(-90, 0, 0));
-        GameObject c = Instantiate(confettiParticle, transform.position, Quaternion.Euler(-90, 0, 0));
-        yield return new WaitForSeconds(1);
-        Destroy(a);
-        Destroy(b);
-        Destroy(c);
+        GameObject a = Instantiate(confettiParticle, position1, Quaternion.Euler(-45, 0, 0));
+        GameObject b = Instantiate(confettiParticle, position2, Quaternion.Euler(-45, 0, 0));
+        GameObject c = Instantiate(confettiParticle, transform.position, Quaternion.Euler(-45, 0, 0));
     }
 }

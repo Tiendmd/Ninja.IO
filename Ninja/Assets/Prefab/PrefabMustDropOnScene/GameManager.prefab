@@ -54,7 +54,6 @@ MonoBehaviour:
   enemysManager:
   - {fileID: 0}
   - {fileID: 0}
-  oneTime: 0
 --- !u!114 &1214346938821779520
 MonoBehaviour:
   m_ObjectHideFlags: 0

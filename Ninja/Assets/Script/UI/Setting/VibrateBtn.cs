@@ -11,6 +11,7 @@ public class VibrateBtn : MonoBehaviour
 
     public void Click()
     {
+        GameDataManager.Instance.SetVibrate();
         if (check)
         {
             transform.GetComponent<Image>().sprite = spriteMute;

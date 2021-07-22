@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183d922ee5cf25e48b2066dbf682858a, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
-  level: 1
-  totalCoin: 0
+  level: 2
+  totalCoin: 700
+  skin1: {fileID: 0}
+  skin2: {fileID: 0}
   listSkin1: []
-  listSkin2_1: []
-  listSkin2_2: []
+  listSkin2: []

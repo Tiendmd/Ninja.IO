@@ -7,30 +7,28 @@ public class PlayerData : MonoBehaviour
     [Header("Placement")]
     public static PlayerData Instance;
     public int place;
-    public int coinEarn;
+    public int coinEarnThisRun;
 
     private void Awake()
     {
             Instance = this;
     }
-
-    public void CoinEarnProcess(int a)
+    
+    public void CoinEarnThisRun(int a)
     {
-        if (a == 1)
+        if (a==1)
         {
-            coinEarn = 700;
+            coinEarnThisRun = 700;
         }
-        else if (a == 2)
+        else if (a==2)
         {
-            coinEarn = 500;
+            coinEarnThisRun = 500;
+
         }
-        else if (a == 3)
+        else if (a==3)
         {
-            coinEarn = 300;
-        }
-        else
-        {
-            coinEarn = a;
+            coinEarnThisRun = 300;
+
         }
     }
 }

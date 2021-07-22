@@ -11,6 +11,7 @@ public class MusicBtn : MonoBehaviour
 
     public void Click()
     {
+        GameDataManager.Instance.SetMusic();
         if (check)
         {
             transform.GetComponent<Image>().sprite = spriteMute;

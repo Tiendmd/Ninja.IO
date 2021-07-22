@@ -9,6 +9,6 @@ public class CoinTxt : MonoBehaviour
     public Text coinTxt;
     private void Start()
     {
-        coinTxt.text = "" + GameDataManager.Instance.gameDataScrObj.totalCoin ;
+        coinTxt.text = "" + GameDataManager.Instance.gameDataScrObj.totalCoin;
     }
 }

@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject shopButton;
     public GameObject coinGroup;
     public GameObject countDown;
+    public GameObject sliders;
 
     [Header("Finished")]
     public RectTransform nextLevelBtn;
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
         panel.gameObject.SetActive(true);
         coinGroup.gameObject.SetActive(true);
         nextLevelBtn.gameObject.SetActive(false);
+        sliders.SetActive(false);
         StartMenu();
     }
 
@@ -80,7 +82,7 @@ public class UIManager : MonoBehaviour
         SetNextLevelTxt();
         adsBtn.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        adsBtn.DOScale(new Vector3(7, 11, 0), 0.75f).SetEase(Ease.OutCubic).SetLoops(-1, LoopType.Yoyo);
+        adsBtn.DOScale(new Vector3(8, 12, 0), 0.75f).SetEase(Ease.OutCubic).SetLoops(-1, LoopType.Yoyo);
         yield return new WaitForSeconds(3);
         nextLevelBtn.gameObject.SetActive(true);
         Tween d = nextLevelBtn.GetComponentInChildren<Text>().DOFade(1, 1).SetEase(Ease.Linear);
@@ -88,12 +90,14 @@ public class UIManager : MonoBehaviour
 
     public void SetNextLevelTxt()
     {
-        adsBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarn * 5 + "";
-        nextLevelBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarn + " is enough !";
+        adsBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarnThisRun * 5 + "";
+        nextLevelBtn.GetComponentInChildren<Text>().text = PlayerData.Instance.coinEarnThisRun + " is enough !";
     }
 
     public IEnumerator CountDown()
     {
+        sliders.SetActive(true);
+
         countDown.transform.GetChild(0).gameObject.SetActive(true);
         Tween a = countDown.transform.GetChild(0).GetComponent<TMP_Text>().DOFade(0, 1);
         yield return a.WaitForCompletion();
@@ -114,5 +118,6 @@ public class UIManager : MonoBehaviour
 
         yield return d.WaitForCompletion();
         countDown.transform.GetChild(3).gameObject.SetActive(false);
+
     }
 }

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0527d2043ef0034591d689168431a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 4
   slowSpeed: 1
   originMoveSpeed: 7
   jumpForce: 6
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   place: 0
-  coinEarn: 0
+  coinEarnThisRun: 0
 --- !u!1 &564572456264678601
 GameObject:
   m_ObjectHideFlags: 0

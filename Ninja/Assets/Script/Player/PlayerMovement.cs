@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private bool isPushed;
     [Header("MoveSpeed")]
     public float moveSpeed;
     public float slowSpeed;
@@ -35,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(-transform.forward * 5, ForceMode.VelocityChange);
+        }
         if ( Input.GetMouseButtonDown(0))
         {
             lastCursorPosition = WorldMousePos();
@@ -44,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 delta = WorldMousePos() - lastCursorPosition;
 
-            if (MyScene.Instance.gameIsStart == true)
+            if (MyScene.Instance.gameIsStart == true && !isPushed)
             {
                 MoveHorizontal(delta.x / Screen.width * sensitive * halfRange);
             }
@@ -54,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (MyScene.Instance.gameIsStart == true)
+        if (MyScene.Instance.gameIsStart == true && !isPushed)
         {
             if (MoveForward())
             {
@@ -124,6 +128,18 @@ public class PlayerMovement : MonoBehaviour
                 playerManager.jumping = false;
             }
         }
+    }
+
+    public IEnumerator PushBack(Vector3 dir)
+    {
+        rb.velocity = Vector3.zero;
+        animator.SetBool("stun", true);
+        isPushed = true;
+        rb.AddForce(dir, ForceMode.Impulse);
+        yield return new WaitForSeconds(1.5f);
+        animator.SetBool("stun", false);
+        isPushed = false;
+        rb.velocity = new Vector3(0, rb.velocity.y, Mathf.Clamp(1 * moveSpeed, 0, moveSpeed));
     }
 
     private void OnDrawGizmos()
